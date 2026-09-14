@@ -76,18 +76,13 @@ export default function Home() {
       {/* Desktop Hero */}
       <section className="hidden lg:grid pt-16 min-h-screen grid-cols-2">
         <div className="flex flex-col justify-center px-14 py-0" style={{ background: "#F6F8F5" }}>
-          <ScrollEffect>
             <h1 className="text-6xl xl:text-7xl font-bold leading-[1.05] mb-6" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
               Réparer votre voile.<br />
               <em className="not-italic" style={{ color: FOREST }}>Retrouver le ciel.</em>
             </h1>
-          </ScrollEffect>
-          <ScrollEffect delay={0.1}>
             <p className="text-lg leading-relaxed mb-8 max-w-md" style={{ color: "#3D4D43" }}>
               Atelier spécialisé dans la réparation de voiles de parapente. Accrocs, tissu, coutures, suspentes : une solution adaptée et certifiée pour votre équipement.
             </p>
-          </ScrollEffect>
-          <ScrollEffect delay={0.2}>
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/contact"
@@ -104,8 +99,6 @@ export default function Home() {
                 Voir nos tarifs <span className="inline">↗</span>
               </Link>
             </div>
-          </ScrollEffect>
-          <ScrollEffect delay={0.3}>
             <div className="mt-16 grid grid-cols-3 gap-6 pt-10 border-t" style={{ borderColor: "#D8E8DC" }}>
               {[
                 { val: "12+", label: "Années d'expérience" },
@@ -118,18 +111,15 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </ScrollEffect>
         </div>
         <div className="relative min-h-[600px]" style={{ background: "#D8E8DC" }}>
-          <ScrollEffect direction="right" duration={0.8}>
-            <Image 
-              src={IMG.hero} 
-              alt="Parapente dans les Alpes" 
-              fill
-              priority
-              className="object-cover" 
-            />
-          </ScrollEffect>
+          <Image 
+            src={IMG.hero} 
+            alt="Parapente dans les Alpes" 
+            fill
+            priority
+            className="object-cover" 
+          />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(26,56,41,0.08), transparent)" }} />
         </div>
       </section>
