@@ -32,12 +32,7 @@ export default function Home() {
       {/* Mobile Hero */}
       <section className="lg:hidden pt-[64px]" style={{ background: "#fffdf9" }}>
         <div className="flex flex-col gap-[28px] px-[20px] py-[48px]">
-          <div className="inline-flex self-start items-center px-[16px] py-[6px] rounded-[999px] relative" style={{ background: "#e1ece5" }}>
-            <div className="absolute inset-0 rounded-[999px] border pointer-events-none" style={{ borderColor: "#82a390" }} />
-            <span className="text-[11px] tracking-[1.2px] uppercase whitespace-nowrap" style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700, color: "#1c3328" }}>
-              Atelier Certifié - Alpes Françaises
-            </span>
-          </div>
+          
 
           <h1 className="text-[38px] leading-[1.15]" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 800, color: "#1c3328" }}>
             <span>Réparer votre voile. </span>
@@ -89,7 +84,7 @@ export default function Home() {
       {/* Desktop Hero */}
       <section className="hidden lg:grid pt-16 min-h-screen grid-cols-2">
         <div className="flex flex-col justify-center px-14 py-0" style={{ background: "#F6F8F5" }}>
-          <Tag>Atelier certifié · Alpes françaises</Tag>
+          
           <h1 className="text-6xl xl:text-7xl font-bold leading-[1.05] mb-6" style={{ fontFamily: "var(--font-fraunces), serif", color: "#111C17" }}>
             Réparer votre voile.<br />
             <em className="not-italic" style={{ color: FOREST }}>Retrouver le ciel.</em>
