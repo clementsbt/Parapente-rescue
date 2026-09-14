@@ -125,6 +125,7 @@ export default function Home() {
               src={IMG.hero} 
               alt="Parapente dans les Alpes" 
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
+              loading="eager" 
             />
           </ScrollEffect>
           <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(26,56,41,0.08), transparent)" }} />
