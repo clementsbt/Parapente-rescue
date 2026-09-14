@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import GoogleReviews from "@/components/GoogleReviews";
 import ScrollEffect from "@/components/ScrollEffect";
 
 const FOREST = "#1A3829";
@@ -195,35 +196,16 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 px-8 md:px-14 max-w-6xl mx-auto">
+      <section className="py-24 px-8 md:px-14">
         <ScrollEffect>
-          <div className="mb-12">
-            <Tag>Témoignages</Tag>
+          <div className="max-w-6xl mx-auto mb-12">
+            <Tag>Avis Google</Tag>
             <h2 className="text-3xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
-              Faire confiance à l'atelier
+              Ils nous font confiance
             </h2>
           </div>
         </ScrollEffect>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {[
-            { name: "Pierre-Y.", role: "Pilote XC", time: "il y a 2 semaines", text: "Après une mauvaise rencontre avec un sapin à Chamonix, mon aile avait 3 caissons expirées. Parapente Rescue l'a réparée comme neuve en moins d'une semaine. Un travail d'orfèvre." },
-            { name: "Audrey L.", role: "Monitrice", time: "il y a 1 mois", text: "Mon contrôle porosité régulier a révélé un calage hors norme. L'équipe a recalé l'aile avec une précision folle. J'ai retrouvé l'originalité de ma voile dès le premier vol." },
-          ].map((t, i) => (
-            <ScrollEffect key={t.name} delay={i * 0.1}>
-              <div className="p-8 rounded-sm border transition-all hover:shadow-lg" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
-                <div className="flex mb-4">{[...Array(5)].map((_, i) => <span key={i} style={{ color: "#F59E0B" }}>★</span>)}</div>
-                <p className="text-sm leading-relaxed mb-6 italic" style={{ color: "#3D4D43" }}>"{t.text}"</p>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-semibold" style={{ color: "#111C17" }}>{t.name} · {t.role}</p>
-                    <p className="text-xs mt-0.5" style={{ color: "#B5CAB8" }}>{t.time}</p>
-                  </div>
-                  <span className="text-xs font-semibold px-2 py-1 rounded-sm" style={{ background: "#EBF3ED", color: FOREST }}>Google Reviews</span>
-                </div>
-              </div>
-            </ScrollEffect>
-          ))}
-        </div>
+        <GoogleReviews />
       </section>
 
       {/* CTA */}
