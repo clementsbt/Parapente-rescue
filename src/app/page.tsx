@@ -183,7 +183,7 @@ export default function Home() {
               { n: "04", title: "Récupérez", desc: "Votre aile est prête à voler. Retrait sur place ou renvoi sécurisé." },
             ].map((s, i) => (
               <ScrollEffect key={s.n} delay={i * 0.1}>
-                <div className="relative p-6 rounded-sm border transition-all hover:shadow-lg hover:-translate-y-2" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
+                <div className="relative p-6 rounded-sm border transition-all hover:shadow-lg hover:-translate-y-2 h-full flex flex-col justify-between" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
                   <span className="text-7xl font-bold tabular-nums leading-none absolute top-2 right-4 opacity-10" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>{s.n}</span>
                   <h3 className="text-lg font-bold mb-2 relative z-10" style={{ color: "#111C17" }}>{s.title}</h3>
                   <p className="text-sm leading-relaxed relative z-10" style={{ color: "#6B7C72" }}>{s.desc}</p>
