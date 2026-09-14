@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Logo from "./Logo";
 
 const FOREST = "#1A3829";
 const FOREST_DEEP = "#0F2218";
@@ -35,12 +36,7 @@ export default function Header() {
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-[20px] md:px-10 h-16 border-b"
         style={{ background: "#fffdf9", borderColor: "#e5e1d8" }}
       >
-        <Link href="/" className="flex items-center gap-[8px]" onClick={() => setOpen(false)}>
-          <div className="w-8 h-8 rounded-[6px] flex items-center justify-center text-xs font-bold" style={{ background: FOREST, color: "#fff", fontFamily: "'Fraunces', serif" }}>PR</div>
-          <span className="text-[15px] whitespace-nowrap" style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, color: "#1c3328" }}>
-            PARAPENTE <span style={{ color: "#82a390" }}>RESCUE</span>
-          </span>
-        </Link>
+        <Logo />
 
         <nav className="hidden lg:flex items-center gap-7">
           {NAV_LINKS.map((l) => (
@@ -88,7 +84,7 @@ export default function Header() {
                 href={l.href}
                 onClick={() => setOpen(false)}
                 className="text-left text-2xl font-medium py-3 border-b transition-colors"
-                style={{ fontFamily: "'Fraunces', serif", borderColor: "#D8E8DC", color: current === l.page ? FOREST : "#111C17" }}
+                style={{ borderColor: "#D8E8DC", color: current === l.page ? FOREST : "#111C17" }}
               >
                 {l.label}
               </Link>
@@ -97,7 +93,7 @@ export default function Header() {
               href="/contact"
               onClick={() => setOpen(false)}
               className="mt-6 text-left text-2xl font-medium py-3 border-b"
-              style={{ fontFamily: "'Fraunces', serif", borderColor: "#D8E8DC", color: current === "contact" ? FOREST : "#111C17" }}
+              style={{ borderColor: "#D8E8DC", color: current === "contact" ? FOREST : "#111C17" }}
             >
               Contact & Devis
             </Link>
