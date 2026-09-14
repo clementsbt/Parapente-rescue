@@ -1,13 +1,14 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const FOREST = "#1A3829";
 const FOREST_DEEP = "#0F2218";
 
 const IMG = {
   hero: "/images/atelier/Reparation-parapente-chambery-Grenoble--2048x1360.jpeg.webp",
-  sewing1: "https://images.unsplash.com/photo-1606501126768-b78d4569d3f9?w=800&h=600&fit=crop&auto=format",
-  sewing2: "https://images.unsplash.com/photo-1457972657980-4c9fddebec8d?w=800&h=600&fit=crop&auto=format",
-  sewing3: "https://images.unsplash.com/photo-1568288796918-03e7d93306bd?w=800&h=600&fit=crop&auto=format",
+  sewing1: "/images/atelier/machine.webp",
+  sewing2: "/images/atelier/reparation-profil-parapente-Grenoble-2048x1152.jpg.webp",
+  sewing3: "/images/atelier/suspente-parapente-Saint-Hilaire-1152x2048.jpg.webp",
 };
 
 function Tag({ children }: { children: string }) {
@@ -18,22 +19,12 @@ function Tag({ children }: { children: string }) {
   );
 }
 
-function ArrowIcon({ color = "white" }: { color?: string }) {
-  return (
-    <svg width="12" height="12" viewBox="0 0 14 14" fill="none" className="shrink-0">
-      <path d="M13 13V1H1M13 1L1 13" stroke={color} strokeLinecap="round" strokeWidth="2" />
-    </svg>
-  );
-}
-
 export default function Home() {
   return (
     <>
       {/* Mobile Hero */}
       <section className="lg:hidden pt-[64px]" style={{ background: "#fffdf9" }}>
         <div className="flex flex-col gap-[28px] px-[20px] py-[48px]">
-          
-
           <h1 className="text-[38px] leading-[1.15]" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 400, color: "#1c3328" }}>
             <span>Réparer votre voile. </span>
             <span style={{ color: "#82a390" }}>Retrouver le ciel.</span>
@@ -46,7 +37,7 @@ export default function Home() {
           <div className="flex flex-col gap-[12px] w-full">
             <Link
               href="/contact"
-              className="flex items-center justify-center gap-[8px] w-full px-[24px] py-[14px] rounded-[999px]"
+              className="flex items-center justify-center gap-[8px] w-full px-[24px] py-[14px] rounded-[999px] transition-transform hover:scale-105 active:scale-95"
               style={{ background: FOREST, boxShadow: "0px 4px 12px rgba(26,56,41,0.3)" }}
             >
               <span className="text-[14px] font-bold text-white">
@@ -56,7 +47,7 @@ export default function Home() {
             </Link>
             <Link
               href="/tarifs"
-              className="flex items-center justify-center gap-[8px] w-full px-[24px] py-[14px] rounded-[999px] bg-white border-2"
+              className="flex items-center justify-center gap-[8px] w-full px-[24px] py-[14px] rounded-[999px] bg-white border-2 transition-transform hover:scale-105 active:scale-95"
               style={{ borderColor: FOREST }}
             >
               <span className="text-[14px] font-bold" style={{ color: FOREST }}>
@@ -84,7 +75,6 @@ export default function Home() {
       {/* Desktop Hero */}
       <section className="hidden lg:grid pt-16 min-h-screen grid-cols-2">
         <div className="flex flex-col justify-center px-14 py-0" style={{ background: "#F6F8F5" }}>
-          
           <h1 className="text-6xl xl:text-7xl font-bold leading-[1.05] mb-6" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
             Réparer votre voile.<br />
             <em className="not-italic" style={{ color: FOREST }}>Retrouver le ciel.</em>
@@ -95,14 +85,14 @@ export default function Home() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/contact"
-              className="text-sm font-bold px-6 py-3 rounded-[999px] transition-all"
+              className="text-sm font-bold px-6 py-3 rounded-[999px] transition-all hover:scale-105 active:scale-95"
               style={{ background: FOREST, color: "#fff", boxShadow: "0px 4px 12px rgba(26,56,41,0.3)" }}
             >
               Demander un devis gratuit <span className="inline">↗</span>
             </Link>
             <Link
               href="/tarifs"
-              className="text-sm font-bold px-6 py-3 rounded-[999px] bg-white border-2 transition-all"
+              className="text-sm font-bold px-6 py-3 rounded-[999px] bg-white border-2 transition-all hover:scale-105 active:scale-95"
               style={{ borderColor: FOREST, color: FOREST }}
             >
               Voir nos tarifs <span className="inline">↗</span>
@@ -122,7 +112,11 @@ export default function Home() {
           </div>
         </div>
         <div className="relative min-h-[600px]" style={{ background: "#D8E8DC" }}>
-          <img src={IMG.hero} alt="Pilote parapente dans les Alpes" className="absolute inset-0 w-full h-full object-cover" />
+          <img 
+            src={IMG.hero} 
+            alt="Parapente dans les Alpes" 
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
+          />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(26,56,41,0.08), transparent)" }} />
         </div>
       </section>
@@ -132,7 +126,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div>
             <Tag>Notre savoir-faire</Tag>
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ fontFamily: "var(--font-fraunces), serif", color: "#111C17" }}>
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
               Des soins sur-mesure pour votre parapente
             </h2>
             <p className="text-sm leading-relaxed mb-8" style={{ color: "#6B7C72" }}>
@@ -140,12 +134,12 @@ export default function Home() {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                { icon: "🔧", title: "Accrocs & Déchirures", desc: "Réparation par patch collé double face ou couture bord à bord pour les petites déchirures." },
-                { icon: "📐", title: "Remplacement Panneaux", desc: "Découture et remplacement complet de profils intra ou extrados endommagés." },
-                { icon: "🪡", title: "Bord d'attaque / Fuite", desc: "Restauration des joncs Mylar, coutures de tension et renforts structurels essentiels." },
-                { icon: "⚙️", title: "Suspentes & Ancrages", desc: "Remplacement à l'identique de suspentes rompues (Dyneema, Kevlar)." },
+                { icon: "🔧", title: "Accrocs & Déchirures", desc: "Réparation par patch collé double face ou couture bord à bord." },
+                { icon: "📐", title: "Remplacement Panneaux", desc: "Découture et remplacement complet de profils intra ou extrados." },
+                { icon: "🪡", title: "Bord d'attaque", desc: "Restauration des joncs Mylar et coutures de tension." },
+                { icon: "⚙️", title: "Suspentes", desc: "Remplacement à l'identique de suspentes rompues." },
               ].map((c) => (
-                <div key={c.title} className="p-6 rounded-sm border" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
+                <div key={c.title} className="p-6 rounded-sm border transition-all hover:shadow-lg hover:scale-105" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
                   <div className="text-2xl mb-3">{c.icon}</div>
                   <h3 className="font-semibold text-base mb-2" style={{ color: "#111C17" }}>{c.title}</h3>
                   <p className="text-sm leading-relaxed" style={{ color: "#6B7C72" }}>{c.desc}</p>
@@ -154,10 +148,10 @@ export default function Home() {
             </div>
           </div>
           <div className="grid grid-rows-2 gap-4 h-[540px]">
-            <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm" style={{ background: "#D8E8DC" }} />
+            <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
             <div className="grid grid-cols-2 gap-4">
-              <img src={IMG.sewing2} alt="Réparation tissu parapente" className="w-full h-full object-cover rounded-sm" style={{ background: "#D8E8DC" }} />
-              <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm" style={{ background: "#D8E8DC" }} />
+              <img src={IMG.sewing2} alt="Réparation tissu parapente" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+              <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
             </div>
           </div>
         </div>
@@ -168,7 +162,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <Tag>Méthodologie</Tag>
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-fraunces), serif", color: "#111C17" }}>
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
               Comment nous sauvons votre voile
             </h2>
           </div>
@@ -178,13 +172,11 @@ export default function Home() {
               { n: "02", title: "Devis", desc: "Réception d'une estimation chiffrée et du délai d'intervention sous 48h." },
               { n: "03", title: "Déposez", desc: "Déposez votre matériel à l'atelier ou expédiez-le par transporteur." },
               { n: "04", title: "Récupérez", desc: "Votre aile est prête à voler. Retrait sur place ou renvoi sécurisé." },
-            ].map((s) => (
-              <div key={s.n}>
-                <span className="text-7xl font-bold tabular-nums leading-none" style={{ fontFamily: "var(--font-fraunces), serif", color: "#EBF3ED" }}>{s.n}</span>
-                <div className="-mt-4">
-                  <h3 className="text-lg font-semibold mb-2" style={{ color: "#111C17" }}>{s.title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "#6B7C72" }}>{s.desc}</p>
-                </div>
+            ].map((s, i) => (
+              <div key={s.n} className="relative p-6 rounded-sm border transition-all hover:shadow-lg hover:-translate-y-2" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
+                <span className="text-7xl font-bold tabular-nums leading-none absolute top-2 right-4 opacity-10" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>{s.n}</span>
+                <h3 className="text-lg font-bold mb-2 relative z-10" style={{ color: "#111C17" }}>{s.title}</h3>
+                <p className="text-sm leading-relaxed relative z-10" style={{ color: "#6B7C72" }}>{s.desc}</p>
               </div>
             ))}
           </div>
@@ -195,7 +187,7 @@ export default function Home() {
       <section className="py-24 px-8 md:px-14 max-w-6xl mx-auto">
         <div className="mb-12">
           <Tag>Témoignages</Tag>
-          <h2 className="text-3xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-fraunces), serif", color: "#111C17" }}>
+          <h2 className="text-3xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
             Faire confiance à l'atelier
           </h2>
         </div>
@@ -204,7 +196,7 @@ export default function Home() {
             { name: "Pierre-Y.", role: "Pilote XC", time: "il y a 2 semaines", text: "Après une mauvaise rencontre avec un sapin à Chamonix, mon aile avait 3 caissons expirées. Parapente Rescue l'a réparée comme neuve en moins d'une semaine. Un travail d'orfèvre." },
             { name: "Audrey L.", role: "Monitrice", time: "il y a 1 mois", text: "Mon contrôle porosité régulier a révélé un calage hors norme. L'équipe a recalé l'aile avec une précision folle. J'ai retrouvé l'originalité de ma voile dès le premier vol." },
           ].map((t) => (
-            <div key={t.name} className="p-8 rounded-sm border" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
+            <div key={t.name} className="p-8 rounded-sm border transition-all hover:shadow-lg" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
               <div className="flex mb-4">{[...Array(5)].map((_, i) => <span key={i} style={{ color: "#F59E0B" }}>★</span>)}</div>
               <p className="text-sm leading-relaxed mb-6 italic" style={{ color: "#3D4D43" }}>"{t.text}"</p>
               <div className="flex items-center justify-between">
@@ -220,20 +212,26 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="mx-6 md:mx-14 mb-0 rounded-sm py-20 px-10 text-center" style={{ background: FOREST }}>
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" style={{ fontFamily: "var(--font-fraunces), serif" }}>
-          Prêt à faire réparer votre matériel ?
-        </h2>
-        <p className="text-sm mb-8 opacity-70 max-w-md mx-auto" style={{ color: "#D8E8DC" }}>
-          N'attendez pas que les dégâts s'aggravent. Contactez-nous pour une évaluation professionnelle.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <Link href="/contact" className="text-sm font-bold px-6 py-3 rounded-[999px]" style={{ background: "#F6F8F5", color: FOREST, boxShadow: "0px 4px 12px rgba(0,0,0,0.2)" }}>
-            Demander un devis en ligne ↗
-          </Link>
-          <a href="tel:+33685452244" className="text-sm font-bold px-6 py-3 rounded-[999px] border-2" style={{ borderColor: "rgba(255,255,255,0.5)", color: "#fff" }}>
-            Nous appeler
-          </a>
+      <section className="mx-6 md:mx-14 mb-0 rounded-sm py-20 px-10 text-center relative overflow-hidden" style={{ background: FOREST }}>
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-64 h-64 rounded-full" style={{ background: "radial-gradient(circle, #fff 0%, transparent 70%)" }} />
+          <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full" style={{ background: "radial-gradient(circle, #fff 0%, transparent 70%)" }} />
+        </div>
+        <div className="relative z-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>
+            Prêt à faire réparer votre matériel ?
+          </h2>
+          <p className="text-sm mb-8 opacity-70 max-w-md mx-auto" style={{ color: "#D8E8DC" }}>
+            N'attendez pas que les dégâts s'aggravent. Contactez-nous pour une évaluation professionnelle.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/contact" className="text-sm font-bold px-6 py-3 rounded-[999px] transition-transform hover:scale-105 active:scale-95" style={{ background: "#F6F8F5", color: FOREST, boxShadow: "0px 4px 12px rgba(0,0,0,0.2)" }}>
+              Demander un devis en ligne ↗
+            </Link>
+            <a href="tel:+33685452244" className="text-sm font-bold px-6 py-3 rounded-[999px] border-2 transition-transform hover:scale-105 active:scale-95" style={{ borderColor: "rgba(255,255,255,0.5)", color: "#fff" }}>
+              Nous appeler
+            </a>
+          </div>
         </div>
       </section>
     </>
