@@ -75,7 +75,7 @@ export default function Home() {
           ].map((s) => (
             <div key={s.val} className="flex flex-col gap-[4px] items-center w-full">
               <p className="text-[36px]" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 800, color: "#1c3328" }}>{s.val}</p>
-              <p className="text-[14px]" style={{ fontFamily: "var(--font-figtree), sans-serif", fontWeight: 600, color: "#2f3e36" }}>{s.label}</p>
+              <p className="text-[14px]" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 600, color: "#2f3e36" }}>{s.label}</p>
             </div>
           ))}
         </div>
@@ -115,7 +115,7 @@ export default function Home() {
               { val: "48h", label: "Diagnostic moyen" },
             ].map((s) => (
               <div key={s.val}>
-                <p className="text-3xl font-bold" style={{ fontFamily: "var(--font-fraunces), serif", color: FOREST }}>{s.val}</p>
+                <p className="text-3xl font-bold" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: FOREST }}>{s.val}</p>
                 <p className="text-xs mt-1 leading-snug" style={{ color: "#6B7C72" }}>{s.label}</p>
               </div>
             ))}
