@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const FOREST = "#1A3829";
 const FOREST_DEEP = "#0F2218";
@@ -8,10 +9,17 @@ export default function Footer() {
     <footer className="mt-24 py-16 px-6 md:px-10" style={{ background: FOREST_DEEP, color: "#D8E8DC" }}>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
         <div className="md:col-span-2">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-7 h-7 rounded-sm flex items-center justify-center text-xs font-bold" style={{ background: "#D8E8DC", color: FOREST_DEEP, fontFamily: "'Fraunces', serif" }}>PR</div>
-            <span className="text-sm font-semibold tracking-wide uppercase" style={{ fontFamily: "'Fraunces', serif" }}>Parapente Rescue</span>
-          </div>
+          <Link href="/" className="flex items-center gap-2 mb-4">
+            <div className="relative w-10 h-10">
+              <Image
+                src="/images/logo/atelier-reparation-parapente-rescue-noir.webp"
+                alt="Parapente Rescue"
+                fill
+                className="object-contain rounded-sm bg-white"
+              />
+            </div>
+            <span className="text-sm font-semibold tracking-wide uppercase" style={{ fontFamily: "var(--font-fraunces), serif" }}>Parapente Rescue</span>
+          </Link>
           <p className="text-sm leading-relaxed opacity-70 max-w-xs">
             Atelier professionnel de réparation et de révision de voiles de parapente. Basé à quelques minutes de Saint-Hilaire du Touvet.
           </p>
