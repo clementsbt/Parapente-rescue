@@ -85,7 +85,7 @@ export default function Home() {
       <section className="hidden lg:grid pt-16 min-h-screen grid-cols-2">
         <div className="flex flex-col justify-center px-14 py-0" style={{ background: "#F6F8F5" }}>
           
-          <h1 className="text-6xl xl:text-7xl font-bold leading-[1.05] mb-6" style={{ fontFamily: "var(--font-fraunces), serif", color: "#111C17" }}>
+          <h1 className="text-6xl xl:text-7xl font-bold leading-[1.05] mb-6" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
             Réparer votre voile.<br />
             <em className="not-italic" style={{ color: FOREST }}>Retrouver le ciel.</em>
           </h1>
