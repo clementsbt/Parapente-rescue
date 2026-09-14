@@ -15,7 +15,7 @@ export default function Footer() {
                 src="/images/logo/atelier-reparation-parapente-rescue-.png.webp"
                 alt="Parapente Rescue"
                 fill
-                className="object-contain rounded-sm bg-white"
+                className="object-contain rounded-sm"
               />
             </div>
             <span className="text-sm font-semibold tracking-wide uppercase" style={{ fontFamily: "var(--font-fraunces), serif" }}>Parapente Rescue</span>
