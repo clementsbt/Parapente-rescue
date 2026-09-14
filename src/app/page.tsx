@@ -34,7 +34,7 @@ export default function Home() {
         <div className="flex flex-col gap-[28px] px-[20px] py-[48px]">
           
 
-          <h1 className="text-[38px] leading-[1.15]" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 800, color: "#1c3328" }}>
+          <h1 className="text-[38px] leading-[1.15]" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 400, color: "#1c3328" }}>
             <span>Réparer votre voile. </span>
             <span style={{ color: "#82a390" }}>Retrouver le ciel.</span>
           </h1>
@@ -74,7 +74,7 @@ export default function Home() {
             { val: "48h", label: "Diagnostic moyen" },
           ].map((s) => (
             <div key={s.val} className="flex flex-col gap-[4px] items-center w-full">
-              <p className="text-[36px]" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 800, color: "#1c3328" }}>{s.val}</p>
+              <p className="text-[36px]" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 400, color: "#1c3328" }}>{s.val}</p>
               <p className="text-[14px]" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 600, color: "#2f3e36" }}>{s.label}</p>
             </div>
           ))}
