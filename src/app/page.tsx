@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import ScrollEffect from "@/components/ScrollEffect";
 
 const FOREST = "#1A3829";
@@ -121,11 +122,12 @@ export default function Home() {
         </div>
         <div className="relative min-h-[600px]" style={{ background: "#D8E8DC" }}>
           <ScrollEffect direction="right" duration={0.8}>
-            <img 
+            <Image 
               src={IMG.hero} 
               alt="Parapente dans les Alpes" 
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
-              loading="eager" 
+              fill
+              priority
+              className="object-cover" 
             />
           </ScrollEffect>
           <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(26,56,41,0.08), transparent)" }} />
