@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Logo() {
   return (
     <Link href="/" className="flex items-center gap-[8px]">
-      <div className="relative w-8 h-8">
+      <div className="relative w-12 h-12">
         <Image
           src="/images/logo/atelier-reparation-parapente-rescue-noir.webp"
           alt="Parapente Rescue"
