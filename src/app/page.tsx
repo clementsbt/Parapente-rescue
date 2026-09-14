@@ -4,7 +4,7 @@ const FOREST = "#1A3829";
 const FOREST_DEEP = "#0F2218";
 
 const IMG = {
-  hero: "https://images.unsplash.com/photo-1724081549788-740e87e42a38?w=1400&h=900&fit=crop&auto=format",
+  hero: "/images/atelier/Reparation-parapente-chambery-Grenoble--2048x1360.jpeg.webp",
   sewing1: "https://images.unsplash.com/photo-1606501126768-b78d4569d3f9?w=800&h=600&fit=crop&auto=format",
   sewing2: "https://images.unsplash.com/photo-1457972657980-4c9fddebec8d?w=800&h=600&fit=crop&auto=format",
   sewing3: "https://images.unsplash.com/photo-1568288796918-03e7d93306bd?w=800&h=600&fit=crop&auto=format",
