@@ -52,22 +52,22 @@ export default function Home() {
             <Link
               href="/contact"
               className="flex items-center justify-center gap-[8px] w-full px-[24px] py-[14px] rounded-[999px]"
-              style={{ background: "linear-gradient(to right, #3e5c4e, #2b4438)", boxShadow: "0px 4px 6px rgba(62,92,78,0.2)" }}
+              style={{ background: FOREST, boxShadow: "0px 4px 12px rgba(26,56,41,0.3)" }}
             >
-              <span className="text-[14px] font-bold text-white" style={{ fontFamily: "var(--font-figtree), sans-serif" }}>
+              <span className="text-[14px] font-bold text-white">
                 Demander un devis gratuit
               </span>
-              <ArrowIcon color="white" />
+              <span className="text-white text-lg">↗</span>
             </Link>
             <Link
               href="/tarifs"
-              className="flex items-center justify-center gap-[8px] w-full px-[24px] py-[14px] rounded-[999px] relative bg-white"
+              className="flex items-center justify-center gap-[8px] w-full px-[24px] py-[14px] rounded-[999px] bg-white border-2"
+              style={{ borderColor: FOREST }}
             >
-              <div className="absolute inset-0 rounded-[999px] pointer-events-none border-[1.5px]" style={{ borderColor: "#82a390" }} />
-              <span className="text-[14px] font-bold" style={{ fontFamily: "var(--font-figtree), sans-serif", color: "#1c3328" }}>
+              <span className="text-[14px] font-bold" style={{ color: FOREST }}>
                 Voir nos tarifs
               </span>
-              <ArrowIcon color="#1C3328" />
+              <span style={{ color: FOREST }} className="text-lg">↗</span>
             </Link>
           </div>
         </div>
@@ -100,17 +100,17 @@ export default function Home() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/contact"
-              className="text-sm font-semibold px-6 py-3 rounded-sm transition-all"
-              style={{ background: FOREST, color: "#F6F8F5" }}
+              className="text-sm font-bold px-6 py-3 rounded-[999px] transition-all"
+              style={{ background: FOREST, color: "#fff", boxShadow: "0px 4px 12px rgba(26,56,41,0.3)" }}
             >
-              Demander un devis gratuit
+              Demander un devis gratuit <span className="inline">↗</span>
             </Link>
             <Link
               href="/tarifs"
-              className="text-sm font-semibold px-6 py-3 rounded-sm border transition-all"
+              className="text-sm font-bold px-6 py-3 rounded-[999px] bg-white border-2 transition-all"
               style={{ borderColor: FOREST, color: FOREST }}
             >
-              Voir nos tarifs ↗
+              Voir nos tarifs <span className="inline">↗</span>
             </Link>
           </div>
           <div className="mt-16 grid grid-cols-3 gap-6 pt-10 border-t" style={{ borderColor: "#D8E8DC" }}>
@@ -233,10 +233,10 @@ export default function Home() {
           N'attendez pas que les dégâts s'aggravent. Contactez-nous pour une évaluation professionnelle.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Link href="/contact" className="text-sm font-semibold px-6 py-3 rounded-sm" style={{ background: "#F6F8F5", color: FOREST }}>
-            Demander un devis en ligne
+          <Link href="/contact" className="text-sm font-bold px-6 py-3 rounded-[999px]" style={{ background: "#F6F8F5", color: FOREST, boxShadow: "0px 4px 12px rgba(0,0,0,0.2)" }}>
+            Demander un devis en ligne ↗
           </Link>
-          <a href="tel:+33685452244" className="text-sm font-semibold px-6 py-3 rounded-sm border" style={{ borderColor: "rgba(255,255,255,0.3)", color: "#fff" }}>
+          <a href="tel:+33685452244" className="text-sm font-bold px-6 py-3 rounded-[999px] border-2" style={{ borderColor: "rgba(255,255,255,0.5)", color: "#fff" }}>
             Nous appeler
           </a>
         </div>
