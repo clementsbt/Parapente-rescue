@@ -12,7 +12,7 @@ export default function Footer() {
           <Link href="/" className="flex items-center gap-2 mb-4">
             <div className="relative w-10 h-10">
               <Image
-                src="/images/logo/atelier-reparation-parapente-rescue-noir.webp"
+                src="/images/logo/atelier-reparation-parapente-rescue-.png.webp"
                 alt="Parapente Rescue"
                 fill
                 className="object-contain rounded-sm bg-white"
