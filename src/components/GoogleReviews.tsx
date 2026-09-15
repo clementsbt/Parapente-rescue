@@ -147,12 +147,7 @@ export default function GoogleReviews() {
         ))}
       </div>
 
-      {/* Trustindex Badge */}
-      <div className="flex justify-end mt-4">
-        <span className="text-xs px-2 py-1 rounded flex items-center gap-1" style={{ background: "#E8F5E9", color: "#1A3829" }}>
-          Certifié par : Trustindex ✓
-        </span>
-      </div>
+
     </div>
   );
 }
