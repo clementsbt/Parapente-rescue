@@ -5,33 +5,33 @@ import Image from "next/image";
 
 const reviews = [
   {
-    name: "Marc L.",
-    date: "il y a 2 semaines",
-    text: "Excellent atelier ! Mon aile avait un accroc important après un crash dans un arbre. Ils ont fait un travail remarquable, presque invisible. Délai rapide et prix raisonnable. Je recommande sincèrement.",
-    rating: 5,
-  },
-  {
-    name: "Sophie M.",
-    date: "il y a 1 mois",
-    text: "Premier vol après réparation et c'est parfait ! Équipe très professionnelle, ils prennent le temps d'expliquer les réparations effectuées. Ma voile est comme neuvelle. Merci !",
-    rating: 5,
-  },
-  {
-    name: "Jean-Pierre D.",
-    date: "il y a 3 semaines",
-    text: "Réparation de plusieurs accrocs sur ma Crosscountry. Travail soigné, bon conseils pour l'entretien. Atelier sérieux avec du matériel professionnel. À recommendersans hésitation.",
-    rating: 5,
-  },
-  {
-    name: "Claire B.",
+    name: "Clément Subtil",
     date: "il y a 5 jours",
-    text: "Suite à une mauvaise rencontre avec un pylône, ma voile avait besoin de réparations importantes. Résultat : parfait ! Le souci de qualité est evident. Je reprends confiance pour voler.",
+    text: "NOUVEAU! Réparation au top ! J'ai confié ma voile à Hugo un dimanche, et je l'ai reçue chez moi, entièrement réparée, le vendredi suivant. Les délais sont vraiment très, très courts. Hugo est à l'écoute du client, réactif et pro. Je recommande vivement pour toute réparation de voile.",
     rating: 5,
   },
   {
-    name: "Philippe R.",
-    date: "il y a 2 semaines",
-    text: "Bonjour j'ai fait réparer mon aile après un incident en montagne. Résultat très satisfaisant. Equipe à l'écoute et professionnelle. Le + : conseils avisés pour la Suite.",
+    name: "Agnès Gorgues",
+    date: "il y a 4 jours",
+    text: "Hugo a été très réactif pour réparer ma voile en quelques jours. Je recommande sans hésiter :)",
+    rating: 5,
+  },
+  {
+    name: "Frederic Briatte",
+    date: "il y a un mois",
+    text: "Prise de RDV rapide et réparation encore plus rapide. Changement de 3 suspentes en une soirée. Je recommande vivement.",
+    rating: 5,
+  },
+  {
+    name: "Animals'Interest",
+    date: "il y a un mois",
+    text: "J'étais si triste quand j'ai déchiré ma voile. Heureusement Hugo a su me rassurer et m'expliquer comment il allait la réparer. Je sens que je volerai en sécurité. Merci pour tout :)",
+    rating: 5,
+  },
+  {
+    name: "Lucas Bruchet",
+    date: "il y a 7 mois",
+    text: "Merci beaucoup à Hugo, réparation express en fin d'après-midi de 2 suspentes. Très réactif et disponible, il a pris le temps de me montrer et m'expliquer comment il faisait ce genre de réparation. Le prix est plus que raisonnable pour ce genre de prestation, je recommande fortement !",
     rating: 5,
   },
 ];
