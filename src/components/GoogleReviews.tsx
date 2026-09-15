@@ -64,31 +64,18 @@ const reviews: Review[] = [
 export default function GoogleReviews() {
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [cardWidth, setCardWidth] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const updateCardWidth = () => {
-      if (typeof window !== 'undefined') {
-        if (window.innerWidth < 768) {
-          setCardWidth(window.innerWidth * 0.85 + 12); // mobile: 85vw + gap
-        } else if (window.innerWidth < 1024) {
-          setCardWidth(window.innerWidth * 0.30 + 16); // md: 30vw + gap
-        } else {
-          setCardWidth(window.innerWidth * 0.28 + 16); // lg: 28vw + gap
-        }
-      }
-    };
-    updateCardWidth();
-    window.addEventListener('resize', updateCardWidth);
-    return () => window.removeEventListener('resize', updateCardWidth);
-  }, []);
-
   const handleScroll = () => {
-    if (scrollRef.current && cardWidth > 0) {
-      const scrollLeft = scrollRef.current.scrollLeft;
-      const newSlide = Math.round(scrollLeft / cardWidth);
-      setCurrentSlide(newSlide);
+    if (scrollRef.current) {
+      const container = scrollRef.current;
+      const scrollLeft = container.scrollLeft;
+      const firstCard = container.querySelector('.review-card') as HTMLElement;
+      if (firstCard) {
+        const cardWidth = firstCard.offsetWidth + 12; // gap
+        const newSlide = Math.round(scrollLeft / cardWidth);
+        setCurrentSlide(Math.min(newSlide, reviews.length - 1));
+      }
     }
   };
 
@@ -110,7 +97,7 @@ export default function GoogleReviews() {
           }
         `}</style>
         {reviews.map((review, index) => (
-          <div key={index} className="flex-shrink-0 w-[85vw] md:w-[30vw] lg:w-[28vw] snap-center">
+          <div key={index} className="review-card flex-shrink-0 w-[85vw] md:w-[30vw] lg:w-[28vw] snap-center">
             <ReviewCard review={review} index={index} expanded={expanded} toggleExpand={toggleExpand} />
           </div>
         ))}
