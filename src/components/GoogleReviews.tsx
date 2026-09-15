@@ -74,8 +74,13 @@ export default function GoogleReviews() {
       <div 
         ref={scrollRef}
         className="flex overflow-x-auto snap-x snap-mandatory gap-3 md:gap-4 p-2 scrollbar-hide"
-        style={{ scrollBehavior: 'smooth' }}
+        style={{ scrollBehavior: 'smooth', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
+        <style jsx>{`
+          .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+          }
+        `}</style>
         {reviews.map((review, index) => (
           <div key={index} className="flex-shrink-0 w-[85vw] md:w-[30vw] lg:w-[28vw] snap-center">
             <ReviewCard review={review} index={index} expanded={expanded} toggleExpand={toggleExpand} />
