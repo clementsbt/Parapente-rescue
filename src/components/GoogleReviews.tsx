@@ -185,8 +185,8 @@ export default function GoogleReviews() {
         →
       </button>
 
-      {/* Dots */}
-      <div className="flex justify-center gap-2 mt-6">
+      {/* Dots - Desktop only */}
+      <div className="hidden md:flex justify-center gap-2 mt-6">
         {Array.from({ length: totalSlides }).map((_, index) => (
           <button
             key={index}
