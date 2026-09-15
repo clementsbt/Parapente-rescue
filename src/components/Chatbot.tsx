@@ -1,5 +1,6 @@
 "use client";
 
+// Parapente Rescue AI Chatbot
 import { useState, useRef, useEffect } from "react";
 
 interface Message {
