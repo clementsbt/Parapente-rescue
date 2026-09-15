@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 
 interface Review {
@@ -64,12 +64,29 @@ const reviews: Review[] = [
 export default function GoogleReviews() {
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [cardWidth, setCardWidth] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const updateCardWidth = () => {
+      if (typeof window !== 'undefined') {
+        if (window.innerWidth < 768) {
+          setCardWidth(window.innerWidth * 0.85 + 12); // mobile: 85vw + gap
+        } else if (window.innerWidth < 1024) {
+          setCardWidth(window.innerWidth * 0.30 + 16); // md: 30vw + gap
+        } else {
+          setCardWidth(window.innerWidth * 0.28 + 16); // lg: 28vw + gap
+        }
+      }
+    };
+    updateCardWidth();
+    window.addEventListener('resize', updateCardWidth);
+    return () => window.removeEventListener('resize', updateCardWidth);
+  }, []);
+
   const handleScroll = () => {
-    if (scrollRef.current) {
+    if (scrollRef.current && cardWidth > 0) {
       const scrollLeft = scrollRef.current.scrollLeft;
-      const cardWidth = scrollRef.current.offsetWidth * 0.85 + 16; // account for w-[85vw] + gap
       const newSlide = Math.round(scrollLeft / cardWidth);
       setCurrentSlide(newSlide);
     }
