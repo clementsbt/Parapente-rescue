@@ -75,7 +75,7 @@ export default function GoogleReviews() {
   }, []);
 
   const cardsPerView = isMobile ? 1 : 3;
-  const totalSlides = Math.ceil(reviews.length / cardsPerView);
+  const totalSlides = isMobile ? reviews.length : (reviews.length - cardsPerView + 1);
 
   const handleScroll = () => {
     if (scrollRef.current) {
