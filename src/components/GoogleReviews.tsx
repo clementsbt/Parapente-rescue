@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 
 interface Review {
@@ -62,76 +62,22 @@ const reviews: Review[] = [
 ];
 
 export default function GoogleReviews() {
-  const [current, setCurrent] = useState(0);
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
   const scrollRef = useRef<HTMLDivElement>(null);
-  const reviewsPerSlide = 3;
-  const totalSlides = Math.ceil(reviews.length / reviewsPerSlide);
-
-  const prev = () => setCurrent((current - 1 + totalSlides) % totalSlides);
-  const next = () => setCurrent((current + 1) % totalSlides);
 
   const toggleExpand = (index: number) => {
     setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
   };
 
   return (
-    <div className="relative max-w-6xl mx-auto px-4 md:px-0">
-      {/* Desktop: Carousel */}
-      <div className="hidden md:block overflow-hidden rounded-xl">
-        <div 
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${current * (100 / reviewsPerSlide)}%)` }}
-        >
-          {Array.from({ length: totalSlides }).map((_, slideIndex) => (
-            <div key={slideIndex} className="w-full flex-shrink-0">
-              <div className="grid grid-cols-3 gap-4 p-4">
-                {reviews.slice(slideIndex * reviewsPerSlide, slideIndex * reviewsPerSlide + reviewsPerSlide).map((review, localIndex) => {
-                  const globalIndex = slideIndex * reviewsPerSlide + localIndex;
-                  return (
-                    <ReviewCard key={localIndex} review={review} index={globalIndex} expanded={expanded} toggleExpand={toggleExpand} />
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Arrows */}
-        <button 
-          onClick={prev}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform bg-white"
-        >
-          ←
-        </button>
-        <button 
-          onClick={next}
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform bg-white"
-        >
-          →
-        </button>
-
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-6">
-          {Array.from({ length: totalSlides }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrent(index)}
-              className="w-2 h-2 rounded-full transition-all"
-              style={{ background: current === index ? "#1A3829" : "#D8E8DC" }}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Mobile: Horizontal scroll */}
+    <div className="max-w-6xl mx-auto px-4 md:px-0">
       <div 
         ref={scrollRef}
-        className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-3 px-4 pb-4 scrollbar-hide"
+        className="flex overflow-x-auto snap-x snap-mandatory gap-3 md:gap-4 p-2 scrollbar-hide"
         style={{ scrollBehavior: 'smooth' }}
       >
         {reviews.map((review, index) => (
-          <div key={index} className="flex-shrink-0 w-[85vw] snap-center">
+          <div key={index} className="flex-shrink-0 w-[85vw] md:w-[30vw] lg:w-[28vw] snap-center">
             <ReviewCard review={review} index={index} expanded={expanded} toggleExpand={toggleExpand} />
           </div>
         ))}
@@ -149,8 +95,7 @@ function ReviewCard({ review, index, expanded, toggleExpand }: {
   const isExpanded = expanded[index] || false;
   
   return (
-    <div className="p-4 md:p-6 rounded-xl" style={{ background: "#F9F9F9" }}>
-      {/* Header */}
+    <div className="p-4 md:p-6 rounded-xl h-full" style={{ background: "#F9F9F9" }}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold" style={{ background: "#1A3829", color: "#fff" }}>
@@ -170,7 +115,6 @@ function ReviewCard({ review, index, expanded, toggleExpand }: {
         />
       </div>
 
-      {/* Rating */}
       <div className="flex items-center gap-2 mb-2">
         <div className="flex gap-0.5">
           {[...Array(5)].map((_, i) => (
@@ -179,7 +123,6 @@ function ReviewCard({ review, index, expanded, toggleExpand }: {
         </div>
       </div>
 
-      {/* Text */}
       <p className="text-xs leading-relaxed" style={{ color: "#3D4D43" }}>
         {review.text.length > 120 && !isExpanded ? (
           <>
