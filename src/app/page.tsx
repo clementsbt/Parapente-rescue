@@ -170,9 +170,9 @@ export default function Home() {
       </section>
 
       {/* Process */}
-      <section className="py-24 px-8 md:px-14" style={{ background: "#fff" }}>
+      <section className="py-12 md:py-24 px-4 md:px-14" style={{ background: "#fff" }}>
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8 md:mb-16">
             <ScrollEffect>
               <Tag>Méthodologie</Tag>
               <h2 className="text-3xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
@@ -180,7 +180,7 @@ export default function Home() {
               </h2>
             </ScrollEffect>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             {[
               { n: "01", title: "Décrivez", desc: "Envoyez-nous des photos et les détails des dégâts via le formulaire." },
               { n: "02", title: "Devis", desc: "Réception d'une estimation chiffrée et du délai d'intervention sous 48h." },
@@ -188,10 +188,10 @@ export default function Home() {
               { n: "04", title: "Récupérez", desc: "Votre aile est prête à voler. Retrait sur place ou renvoi sécurisé." },
             ].map((s, i) => (
               <ScrollEffect key={s.n} delay={i * 0.1}>
-                <div className="relative p-6 rounded-sm border transition-all hover:shadow-lg hover:-translate-y-2 h-full flex flex-col justify-between" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
-                  <span className="text-7xl font-bold tabular-nums leading-none absolute top-2 right-4 opacity-10" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>{s.n}</span>
-                  <h3 className="text-lg font-bold mb-2 relative z-10" style={{ color: "#111C17" }}>{s.title}</h3>
-                  <p className="text-sm leading-relaxed relative z-10" style={{ color: "#6B7C72" }}>{s.desc}</p>
+                <div className="relative p-3 md:p-6 rounded-sm border transition-all hover:shadow-lg hover:-translate-y-2 h-full flex flex-col justify-between" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
+                  <span className="text-5xl md:text-7xl font-bold tabular-nums leading-none absolute top-1 md:top-2 right-2 md:right-4 opacity-10" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>{s.n}</span>
+                  <h3 className="text-base md:text-lg font-bold mb-1 md:mb-2 relative z-10" style={{ color: "#111C17" }}>{s.title}</h3>
+                  <p className="text-xs md:text-sm leading-tight md:leading-relaxed relative z-10" style={{ color: "#6B7C72" }}>{s.desc}</p>
                 </div>
               </ScrollEffect>
             ))}
