@@ -130,7 +130,7 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section className="py-24 px-8 md:px-14 max-w-6xl mx-auto">
+      <section className="py-12 md:py-24 px-4 md:px-14 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <ScrollEffect>
             <Tag>Notre savoir-faire</Tag>
@@ -140,7 +140,7 @@ export default function Home() {
             <p className="text-sm leading-relaxed mb-8" style={{ color: "#6B7C72" }}>
               Chaque intervention respecte minutieusement le cahier des charges constructeur.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-4">
               {[
                 { icon: "🔧", title: "Accrocs & Déchirures", desc: "Réparation par patch collé double face ou couture bord à bord." },
                 { icon: "📐", title: "Remplacement Panneaux", desc: "Découture et remplacement complet de profils intra ou extrados." },
@@ -148,10 +148,10 @@ export default function Home() {
                 { icon: "⚙️", title: "Suspentes", desc: "Remplacement à l'identique de suspentes rompues." },
               ].map((c, i) => (
                 <ScrollEffect key={c.title} delay={i * 0.1}>
-                  <div className="p-6 rounded-sm border transition-all hover:shadow-lg hover:scale-105" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
-                    <div className="text-2xl mb-3">{c.icon}</div>
-                    <h3 className="font-semibold text-base mb-2" style={{ color: "#111C17" }}>{c.title}</h3>
-                    <p className="text-sm leading-relaxed" style={{ color: "#6B7C72" }}>{c.desc}</p>
+                  <div className="p-3 md:p-6 rounded-sm border transition-all hover:shadow-lg hover:scale-105" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
+                    <div className="text-xl md:text-2xl mb-2 md:mb-3">{c.icon}</div>
+                    <h3 className="font-semibold text-sm md:text-base mb-1 md:mb-2" style={{ color: "#111C17" }}>{c.title}</h3>
+                    <p className="text-xs md:text-sm leading-relaxed" style={{ color: "#6B7C72" }}>{c.desc}</p>
                   </div>
                 </ScrollEffect>
               ))}
