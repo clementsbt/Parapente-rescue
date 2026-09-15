@@ -25,50 +25,54 @@ export default function Home() {
   return (
     <>
       {/* Mobile Hero */}
-      <section className="lg:hidden pt-[64px]" style={{ background: "#fffdf9" }}>
-        <div className="flex flex-col gap-[28px] px-[20px] py-[48px]">
-          <h1 className="text-[38px] leading-[1.15]" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 400, color: "#1c3328" }}>
-            <span>Réparer votre voile. </span>
-            <span style={{ color: "#82a390" }}>Retrouver le ciel.</span>
-          </h1>
-
-          <p className="text-[16px] leading-[1.5]" style={{ color: "#2f3e36" }}>
-            Atelier spécialisé dans la réparation de voiles de parapente. Accrocs, tissu, coutures, suspentes : une solution adaptée et certifiée pour votre équipement.
-          </p>
-
-          <div className="flex flex-col gap-[12px] w-full">
-            <Link
-              href="/contact"
-              className="flex items-center justify-center gap-[8px] w-full px-[24px] py-[14px] rounded-[999px] transition-transform hover:scale-105 active:scale-95"
-              style={{ background: FOREST, boxShadow: "0px 4px 12px rgba(26,56,41,0.3)" }}
-            >
-              <span className="text-[14px] font-bold text-white">
-                Demander un devis gratuit
-              </span>
-              <span className="text-white text-lg">↗</span>
-            </Link>
-            <Link
-              href="/tarifs"
-              className="flex items-center justify-center gap-[8px] w-full px-[24px] py-[14px] rounded-[999px] bg-white border-2 transition-transform hover:scale-105 active:scale-95"
-              style={{ borderColor: FOREST }}
-            >
-              <span className="text-[14px] font-bold" style={{ color: FOREST }}>
+      <section className="lg:hidden pt-[64px]">
+        {/* Image Hero */}
+        <div className="relative h-[50vh] w-full">
+          <Image 
+            src={IMG.hero}
+            alt="Parapente dans les Alpes"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5))" }} />
+          <div className="absolute inset-0 flex flex-col justify-center px-[20px] text-white">
+            <h1 className="text-[32px] leading-[1.15] mb-4" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 400 }}>
+              Réparer votre voile.<br />
+              <span style={{ color: "#82a390" }}>Retrouver le ciel.</span>
+            </h1>
+            <p className="text-[14px] opacity-90 mb-6 max-w-xs">
+              Atelier spécialisé dans la réparation de voiles de parapente.
+            </p>
+            <div className="flex flex-col gap-3 w-full">
+              <Link
+                href="/contact"
+                className="flex items-center justify-center gap-2 w-full px-5 py-3 rounded-full font-bold text-sm"
+                style={{ background: FOREST }}
+              >
+                Demander un devis ↗
+              </Link>
+              <Link
+                href="/tarifs"
+                className="flex items-center justify-center gap-2 w-full px-5 py-3 rounded-full bg-white border-2 font-bold text-sm"
+                style={{ borderColor: FOREST, color: FOREST }}
+              >
                 Voir nos tarifs
-              </span>
-              <span style={{ color: FOREST }} className="text-lg">↗</span>
-            </Link>
+              </Link>
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-[24px] px-[20px] py-[40px] w-full" style={{ background: "#e1ece5" }}>
+        {/* Stats */}
+        <div className="flex justify-around px-[20px] py-6 w-full" style={{ background: "#e1ece5" }}>
           {[
-            { val: "12+", label: "Années d'expérience" },
-            { val: "100%", label: "Taux de satisfaction" },
-            { val: "48h", label: "Diagnostic moyen" },
+            { val: "12+", label: "Années" },
+            { val: "100%", label: "Satisfaction" },
+            { val: "48h", label: "Diagnostic" },
           ].map((s) => (
-            <div key={s.val} className="flex flex-col gap-[4px] items-center w-full">
-              <p className="text-[36px]" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 400, color: "#1c3328" }}>{s.val}</p>
-              <p className="text-[14px]" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 600, color: "#2f3e36" }}>{s.label}</p>
+            <div key={s.val} className="flex flex-col items-center">
+              <p className="text-[28px]" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 400, color: "#1c3328" }}>{s.val}</p>
+              <p className="text-[10px]" style={{ color: "#2f3e36" }}>{s.label}</p>
             </div>
           ))}
         </div>

@@ -75,7 +75,7 @@ export default function GoogleReviews() {
   };
 
   return (
-    <div className="relative max-w-6xl mx-auto">
+    <div className="relative max-w-6xl mx-auto px-4 md:px-0">
       {/* Cards Container */}
       <div className="overflow-hidden rounded-xl">
         <div 
@@ -84,7 +84,7 @@ export default function GoogleReviews() {
         >
           {Array.from({ length: totalSlides }).map((_, slideIndex) => (
             <div key={slideIndex} className="w-full flex-shrink-0">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 p-2 md:p-4">
                 {reviews
                   .slice(slideIndex * reviewsPerSlide, slideIndex * reviewsPerSlide + reviewsPerSlide)
                   .map((review, localIndex) => {
@@ -92,7 +92,7 @@ export default function GoogleReviews() {
                     const isExpanded = expanded[globalIndex] || false;
                     
                     return (
-                      <div key={localIndex} className="p-6 rounded-xl" style={{ background: "#F9F9F9" }}>
+                      <div key={localIndex} className="p-4 md:p-6 rounded-xl" style={{ background: "#F9F9F9" }}>
                         {/* Header */}
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-3">
