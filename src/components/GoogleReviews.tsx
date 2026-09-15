@@ -62,20 +62,66 @@ const reviews: Review[] = [
 ];
 
 export default function GoogleReviews() {
+  const [current, setCurrent] = useState(0);
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
   const scrollRef = useRef<HTMLDivElement>(null);
+  const reviewsPerSlide = 3;
+  const totalSlides = Math.ceil(reviews.length / reviewsPerSlide);
+
+  const prev = () => setCurrent((current - 1 + totalSlides) % totalSlides);
+  const next = () => setCurrent((current + 1) % totalSlides);
 
   const toggleExpand = (index: number) => {
     setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
   };
 
   return (
-    <div className="max-w-6xl mx-auto">
-      {/* Desktop: Grid */}
-      <div className="hidden md:grid grid-cols-3 gap-4 p-4">
-        {reviews.map((review, index) => (
-          <ReviewCard key={index} review={review} index={index} expanded={expanded} toggleExpand={toggleExpand} />
-        ))}
+    <div className="relative max-w-6xl mx-auto px-4 md:px-0">
+      {/* Desktop: Carousel */}
+      <div className="hidden md:block overflow-hidden rounded-xl">
+        <div 
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${current * (100 / reviewsPerSlide)}%)` }}
+        >
+          {Array.from({ length: totalSlides }).map((_, slideIndex) => (
+            <div key={slideIndex} className="w-full flex-shrink-0">
+              <div className="grid grid-cols-3 gap-4 p-4">
+                {reviews.slice(slideIndex * reviewsPerSlide, slideIndex * reviewsPerSlide + reviewsPerSlide).map((review, localIndex) => {
+                  const globalIndex = slideIndex * reviewsPerSlide + localIndex;
+                  return (
+                    <ReviewCard key={localIndex} review={review} index={globalIndex} expanded={expanded} toggleExpand={toggleExpand} />
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Arrows */}
+        <button 
+          onClick={prev}
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform bg-white"
+        >
+          ←
+        </button>
+        <button 
+          onClick={next}
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform bg-white"
+        >
+          →
+        </button>
+
+        {/* Dots */}
+        <div className="flex justify-center gap-2 mt-6">
+          {Array.from({ length: totalSlides }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrent(index)}
+              className="w-2 h-2 rounded-full transition-all"
+              style={{ background: current === index ? "#1A3829" : "#D8E8DC" }}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Mobile: Horizontal scroll */}
@@ -88,16 +134,6 @@ export default function GoogleReviews() {
           <div key={index} className="flex-shrink-0 w-[85vw] snap-center">
             <ReviewCard review={review} index={index} expanded={expanded} toggleExpand={toggleExpand} />
           </div>
-        ))}
-      </div>
-
-      {/* Dots - Mobile only */}
-      <div className="md:hidden flex justify-center gap-2 mt-4">
-        {reviews.map((_, index) => (
-          <button
-            key={index}
-            className="w-2 h-2 rounded-full bg-[#D8E8DC] transition-all"
-          />
         ))}
       </div>
     </div>
