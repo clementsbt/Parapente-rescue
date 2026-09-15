@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 interface Review {
@@ -64,7 +64,16 @@ const reviews: Review[] = [
 export default function GoogleReviews() {
   const [current, setCurrent] = useState(0);
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
-  const reviewsPerSlide = 3;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const reviewsPerSlide = isMobile ? 1 : 3;
   const totalSlides = Math.ceil(reviews.length / reviewsPerSlide);
 
   const prev = () => setCurrent((current - 1 + totalSlides) % totalSlides);
