@@ -63,7 +63,7 @@ const reviews: Review[] = [
 
 export default function GoogleReviews() {
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState<number | undefined>(undefined);
   const [isMobile, setIsMobile] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -126,7 +126,7 @@ export default function GoogleReviews() {
           <button
             key={index}
             className="w-2 h-2 rounded-full transition-all"
-            style={{ background: currentSlide === index ? "#1A3829" : "#D8E8DC" }}
+            style={{ background: (currentSlide === undefined ? index === 0 : currentSlide === index) ? "#1A3829" : "#D8E8DC" }}
           />
         ))}
       </div>
