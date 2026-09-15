@@ -120,7 +120,7 @@ export default function GoogleReviews() {
                               <span key={i} className="text-xs" style={{ color: "#F59E0B" }}>★</span>
                             ))}
                           </div>
-                          <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: "#E8F5E9", color: "#1A3829" }}>Avis vérifié</span>
+
                         </div>
 
                         {/* Text */}
