@@ -204,7 +204,8 @@ export default function Home() {
                 src="/images/GoogleLogo.svg.webp" 
                 alt="Google" 
                 width={24} 
-                height={24} 
+                height={24}
+                className="mb-1"
               />
               <Tag>Avis Google</Tag>
             </div>
