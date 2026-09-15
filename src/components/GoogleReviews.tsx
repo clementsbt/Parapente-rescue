@@ -34,6 +34,24 @@ const reviews = [
     text: "Merci beaucoup à Hugo, réparation express en fin d'après-midi de 2 suspentes. Très réactif et disponible, il a pris le temps de me montrer et m'expliquer comment il faisait ce genre de réparation. Le prix est plus que raisonnable pour ce genre de prestation, je recommande fortement !",
     rating: 5,
   },
+  {
+    name: "David Kerzerho",
+    date: "il y a 8 mois",
+    text: "Travail de qualité, relation client au top ! Un vrai professionnel du parapente. Je recommande vivement à tous ceux qui ont'abîmé leur aile !!!!",
+    rating: 5,
+  },
+  {
+    name: "Ivan Haas",
+    date: "il y a 8 mois",
+    text: "Réparation parfaite en 3 jours ! Je recommande 👍",
+    rating: 5,
+  },
+  {
+    name: "Jules Gaire",
+    date: "il y a 10 mois",
+    text: "Je recommande sans hésiter !",
+    rating: 5,
+  },
 ];
 
 export default function GoogleReviews() {
