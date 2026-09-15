@@ -221,24 +221,22 @@ export default function Home() {
           <div className="absolute top-0 left-0 w-64 h-64 rounded-full" style={{ background: "radial-gradient(circle, #fff 0%, transparent 70%)" }} />
           <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full" style={{ background: "radial-gradient(circle, #fff 0%, transparent 70%)" }} />
         </div>
-        <ScrollEffect>
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>
-              Prêt à faire réparer votre matériel ?
-            </h2>
-            <p className="text-sm mb-8 opacity-70 max-w-md mx-auto" style={{ color: "#D8E8DC" }}>
-              N'attendez pas que les dégâts s'aggravent. Contactez-nous pour une évaluation professionnelle.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact" className="text-sm font-bold px-6 py-3 rounded-[999px] transition-transform hover:scale-105 active:scale-95" style={{ background: "#F6F8F5", color: FOREST, boxShadow: "0px 4px 12px rgba(0,0,0,0.2)" }}>
-                Demander un devis en ligne ↗
-              </Link>
-              <a href="tel:+33685452244" className="text-sm font-bold px-6 py-3 rounded-[999px] border-2 transition-transform hover:scale-105 active:scale-95" style={{ borderColor: "rgba(255,255,255,0.5)", color: "#fff" }}>
-                Nous appeler
-              </a>
-            </div>
+        <div className="relative z-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>
+            Prêt à faire réparer votre matériel ?
+          </h2>
+          <p className="text-sm mb-8 opacity-70 max-w-md mx-auto" style={{ color: "#D8E8DC" }}>
+            N'attendez pas que les dégâts s'aggravent. Contactez-nous pour une évaluation professionnelle.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/contact" className="text-sm font-bold px-6 py-3 rounded-[999px] transition-transform hover:scale-105 active:scale-95" style={{ background: "#F6F8F5", color: FOREST, boxShadow: "0px 4px 12px rgba(0,0,0,0.2)" }}>
+              Demander un devis en ligne ↗
+            </Link>
+            <a href="tel:+33685452244" className="text-sm font-bold px-6 py-3 rounded-[999px] border-2 transition-transform hover:scale-105 active:scale-95" style={{ borderColor: "rgba(255,255,255,0.5)", color: "#fff" }}>
+              Nous appeler
+            </a>
           </div>
-        </ScrollEffect>
+        </div>
       </section>
     </>
   );
