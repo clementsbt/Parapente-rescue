@@ -101,11 +101,11 @@ export default function GoogleReviews() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 md:px-0">
+    <div className="max-w-6xl mx-auto px-0 md:px-0">
       <div 
         ref={scrollRef}
         onScroll={handleScroll}
-        className="flex overflow-x-auto snap-x snap-mandatory gap-3 md:gap-4 p-2 scrollbar-hide"
+        className="flex overflow-x-auto snap-x snap-mandatory gap-3 md:gap-4 p-0 md:p-2 scrollbar-hide"
         style={{ scrollBehavior: 'smooth', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         <style jsx>{`
