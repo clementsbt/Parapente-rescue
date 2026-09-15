@@ -63,7 +63,17 @@ const reviews: Review[] = [
 
 export default function GoogleReviews() {
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
+  const [currentSlide, setCurrentSlide] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const scrollLeft = scrollRef.current.scrollLeft;
+      const cardWidth = scrollRef.current.offsetWidth * 0.85 + 16; // account for w-[85vw] + gap
+      const newSlide = Math.round(scrollLeft / cardWidth);
+      setCurrentSlide(newSlide);
+    }
+  };
 
   const toggleExpand = (index: number) => {
     setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
@@ -73,6 +83,7 @@ export default function GoogleReviews() {
     <div className="max-w-6xl mx-auto px-4 md:px-0">
       <div 
         ref={scrollRef}
+        onScroll={handleScroll}
         className="flex overflow-x-auto snap-x snap-mandatory gap-3 md:gap-4 p-2 scrollbar-hide"
         style={{ scrollBehavior: 'smooth', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
@@ -85,6 +96,17 @@ export default function GoogleReviews() {
           <div key={index} className="flex-shrink-0 w-[85vw] md:w-[30vw] lg:w-[28vw] snap-center">
             <ReviewCard review={review} index={index} expanded={expanded} toggleExpand={toggleExpand} />
           </div>
+        ))}
+      </div>
+
+      {/* Dots indicator */}
+      <div className="flex justify-center gap-2 mt-4">
+        {reviews.map((_, index) => (
+          <button
+            key={index}
+            className="w-2 h-2 rounded-full transition-all"
+            style={{ background: currentSlide === index ? "#1A3829" : "#D8E8DC" }}
+          />
         ))}
       </div>
     </div>
