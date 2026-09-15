@@ -199,7 +199,7 @@ export default function Home() {
       <section className="py-24 px-8 md:px-14">
         <ScrollEffect>
           <div className="max-w-6xl mx-auto mb-12">
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center justify-center gap-3 mb-4">
               <Image 
                 src="/images/GoogleLogo.svg.webp" 
                 alt="Google" 
