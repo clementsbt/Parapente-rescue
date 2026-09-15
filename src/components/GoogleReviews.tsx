@@ -83,10 +83,15 @@ export default function GoogleReviews() {
       const scrollLeft = container.scrollLeft;
       const firstCard = container.querySelector('.review-card') as HTMLElement;
       if (firstCard) {
-        const cardWidth = firstCard.offsetWidth + 12;
-        const rawSlide = scrollLeft / cardWidth;
-        const newSlide = Math.floor(rawSlide / cardsPerView);
-        setCurrentSlide(Math.min(newSlide, totalSlides - 1));
+        const cardWidth = firstCard.offsetWidth + (isMobile ? 12 : 16);
+        if (isMobile) {
+          const newSlide = Math.round(scrollLeft / cardWidth);
+          setCurrentSlide(newSlide);
+        } else {
+          // Desktop: calculate which group of 3 cards is visible
+          const newSlide = Math.floor(scrollLeft / cardWidth);
+          setCurrentSlide(Math.min(newSlide, totalSlides - 1));
+        }
       }
     }
   };
