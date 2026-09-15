@@ -199,7 +199,15 @@ export default function Home() {
       <section className="py-24 px-8 md:px-14">
         <ScrollEffect>
           <div className="max-w-6xl mx-auto mb-12">
-            <Tag>Avis Google</Tag>
+            <div className="flex items-center gap-3 mb-4">
+              <Image 
+                src="/images/GoogleLogo.svg.webp" 
+                alt="Google" 
+                width={24} 
+                height={24} 
+              />
+              <Tag>Avis Google</Tag>
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
               Ils nous font confiance
             </h2>
