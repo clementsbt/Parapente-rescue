@@ -3,7 +3,14 @@
 import { useState } from "react";
 import Image from "next/image";
 
-const reviews = [
+interface Review {
+  name: string;
+  date: string;
+  text: string;
+  rating: number;
+}
+
+const reviews: Review[] = [
   {
     name: "Clément Subtil",
     date: "il y a 5 jours",
@@ -25,7 +32,7 @@ const reviews = [
   {
     name: "Animals'Interest",
     date: "il y a un mois",
-    text: "J'étais si triste quand j'ai déchiré ma voile. Heureusement Hugo a su me rassurer et m'expliquer comment il allait la réparer. Je sens que je volerai en sécurité. Merci pour tout :)",
+    text: "J'étais si triste quand j'ai déchiré ma voile. Luckily Hugo a su me rassurer et m'expliquer comment il allait la réparer. Je sens que je volerai en sécurité. Merci pour tout :)",
     rating: 5,
   },
   {
@@ -56,15 +63,15 @@ const reviews = [
 
 export default function GoogleReviews() {
   const [current, setCurrent] = useState(0);
+  const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
   const reviewsPerSlide = 3;
   const totalSlides = Math.ceil(reviews.length / reviewsPerSlide);
 
   const prev = () => setCurrent((current - 1 + totalSlides) % totalSlides);
   const next = () => setCurrent((current + 1) % totalSlides);
 
-  const getVisibleReviews = () => {
-    const start = current * reviewsPerSlide;
-    return reviews.slice(start, start + reviewsPerSlide);
+  const toggleExpand = (index: number) => {
+    setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
   };
 
   return (
@@ -78,47 +85,75 @@ export default function GoogleReviews() {
           {Array.from({ length: totalSlides }).map((_, slideIndex) => (
             <div key={slideIndex} className="w-full flex-shrink-0">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
-                {reviews.slice(slideIndex * reviewsPerSlide, slideIndex * reviewsPerSlide + reviewsPerSlide).map((review, index) => (
-                  <div key={index} className="p-6 rounded-xl" style={{ background: "#F9F9F9" }}>
-                    {/* Header */}
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold" style={{ background: "#1A3829", color: "#fff" }}>
-                          {review.name.charAt(0)}
+                {reviews
+                  .slice(slideIndex * reviewsPerSlide, slideIndex * reviewsPerSlide + reviewsPerSlide)
+                  .map((review, localIndex) => {
+                    const globalIndex = slideIndex * reviewsPerSlide + localIndex;
+                    const isExpanded = expanded[globalIndex] || false;
+                    
+                    return (
+                      <div key={localIndex} className="p-6 rounded-xl" style={{ background: "#F9F9F9" }}>
+                        {/* Header */}
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold" style={{ background: "#1A3829", color: "#fff" }}>
+                              {review.name.charAt(0)}
+                            </div>
+                            <div>
+                              <p className="font-semibold text-sm" style={{ color: "#111C17" }}>{review.name}</p>
+                              <p className="text-xs" style={{ color: "#6B7C72" }}>{review.date}</p>
+                            </div>
+                          </div>
+                          <Image 
+                            src="/images/GoogleLogo.svg.webp" 
+                            alt="Google" 
+                            width={20} 
+                            height={20}
+                            className="opacity-80"
+                          />
                         </div>
-                        <div>
-                          <p className="font-semibold text-sm" style={{ color: "#111C17" }}>{review.name}</p>
-                          <p className="text-xs" style={{ color: "#6B7C72" }}>{review.date}</p>
+
+                        {/* Rating */}
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="flex gap-0.5">
+                            {[...Array(5)].map((_, i) => (
+                              <span key={i} className="text-xs" style={{ color: "#F59E0B" }}>★</span>
+                            ))}
+                          </div>
+                          <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: "#E8F5E9", color: "#1A3829" }}>Avis vérifié</span>
                         </div>
-                      </div>
-                      <Image 
-                        src="/images/GoogleLogo.svg.webp" 
-                        alt="Google" 
-                        width={20} 
-                        height={20}
-                        className="opacity-80"
-                      />
-                    </div>
 
-                    {/* Rating */}
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="flex gap-0.5">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className="text-xs" style={{ color: "#F59E0B" }}>★</span>
-                        ))}
+                        {/* Text */}
+                        <p className="text-xs leading-relaxed" style={{ color: "#3D4D43" }}>
+                          {review.text.length > 120 && !isExpanded ? (
+                            <>
+                              {review.text.slice(0, 120)}...
+                              <button 
+                                onClick={() => toggleExpand(globalIndex)}
+                                className="ml-1 font-medium hover:underline"
+                                style={{ color: "#1A3829" }}
+                              >
+                                Lire la suite
+                              </button>
+                            </>
+                          ) : (
+                            <>
+                              {review.text}
+                              {review.text.length > 120 && (
+                                <button 
+                                  onClick={() => toggleExpand(globalIndex)}
+                                  className="ml-1 font-medium hover:underline"
+                                  style={{ color: "#1A3829" }}
+                                >
+                                  Réduire
+                                </button>
+                              )}
+                            </>
+                          )}
+                        </p>
                       </div>
-                      <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: "#E8F5E9", color: "#1A3829" }}>Avis vérifié</span>
-                    </div>
-
-                    {/* Text */}
-                    <p className="text-xs leading-relaxed" style={{ color: "#3D4D43" }}>
-                      {review.text.length > 120 ? review.text.slice(0, 120) + "..." : review.text}
-                      {review.text.length > 120 && (
-                        <span className="ml-1" style={{ color: "#6B7C72" }}>Lire la suite</span>
-                      )}
-                    </p>
-                  </div>
-                ))}
+                    );
+                  })}
               </div>
             </div>
           ))}
@@ -164,8 +199,6 @@ export default function GoogleReviews() {
           />
         ))}
       </div>
-
-
     </div>
   );
 }
