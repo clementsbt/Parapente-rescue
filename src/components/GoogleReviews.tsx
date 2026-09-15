@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 interface Review {
@@ -62,152 +62,115 @@ const reviews: Review[] = [
 ];
 
 export default function GoogleReviews() {
-  const [current, setCurrent] = useState(0);
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const reviewsPerSlide = isMobile ? 1 : 3;
-  const totalSlides = Math.ceil(reviews.length / reviewsPerSlide);
-
-  const prev = () => setCurrent((current - 1 + totalSlides) % totalSlides);
-  const next = () => setCurrent((current + 1) % totalSlides);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const toggleExpand = (index: number) => {
     setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
   };
 
   return (
-    <div className="relative max-w-6xl mx-auto px-4 md:px-0">
-      {/* Cards Container */}
-      <div className="overflow-hidden rounded-xl">
-        <div 
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${current * (100 / reviewsPerSlide)}%)` }}
-        >
-          {Array.from({ length: totalSlides }).map((_, slideIndex) => (
-            <div key={slideIndex} className="w-full flex-shrink-0">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 p-2 md:p-4">
-                {reviews
-                  .slice(slideIndex * reviewsPerSlide, slideIndex * reviewsPerSlide + reviewsPerSlide)
-                  .map((review, localIndex) => {
-                    const globalIndex = slideIndex * reviewsPerSlide + localIndex;
-                    const isExpanded = expanded[globalIndex] || false;
-                    
-                    return (
-                      <div key={localIndex} className="p-4 md:p-6 rounded-xl" style={{ background: "#F9F9F9" }}>
-                        {/* Header */}
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold" style={{ background: "#1A3829", color: "#fff" }}>
-                              {review.name.charAt(0)}
-                            </div>
-                            <div>
-                              <p className="font-semibold text-sm" style={{ color: "#111C17" }}>{review.name}</p>
-                              <p className="text-xs" style={{ color: "#6B7C72" }}>{review.date}</p>
-                            </div>
-                          </div>
-                          <Image 
-                            src="/images/GoogleLogo.svg.webp" 
-                            alt="Google" 
-                            width={20} 
-                            height={20}
-                            className="opacity-80"
-                          />
-                        </div>
-
-                        {/* Rating */}
-                        <div className="flex items-center gap-2 mb-2">
-                          <div className="flex gap-0.5">
-                            {[...Array(5)].map((_, i) => (
-                              <span key={i} className="text-xs" style={{ color: "#F59E0B" }}>★</span>
-                            ))}
-                          </div>
-
-                        </div>
-
-                        {/* Text */}
-                        <p className="text-xs leading-relaxed" style={{ color: "#3D4D43" }}>
-                          {review.text.length > 120 && !isExpanded ? (
-                            <>
-                              {review.text.slice(0, 120)}...
-                              <button 
-                                onClick={() => toggleExpand(globalIndex)}
-                                className="ml-1 font-medium hover:underline"
-                                style={{ color: "#1A3829" }}
-                              >
-                                Lire la suite
-                              </button>
-                            </>
-                          ) : (
-                            <>
-                              {review.text}
-                              {review.text.length > 120 && (
-                                <button 
-                                  onClick={() => toggleExpand(globalIndex)}
-                                  className="ml-1 font-medium hover:underline"
-                                  style={{ color: "#1A3829" }}
-                                >
-                                  Réduire
-                                </button>
-                              )}
-                            </>
-                          )}
-                        </p>
-                      </div>
-                    );
-                  })}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Navigation Arrows - Hidden on mobile, visible on desktop */}
-      <button 
-        onClick={prev}
-        className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full items-center justify-center shadow-lg hover:scale-110 transition-transform bg-white"
-        style={{ left: "-20px" }}
-      >
-        ←
-      </button>
-      <button 
-        onClick={next}
-        className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-10 h-10 rounded-full items-center justify-center shadow-lg hover:scale-110 transition-transform bg-white"
-        style={{ right: "-20px" }}
-      >
-        →
-      </button>
-
-      {/* Dots - Desktop only */}
-      <div className="hidden md:flex justify-center gap-2 mt-6">
-        {Array.from({ length: totalSlides }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrent(index)}
-            className="w-2 h-2 rounded-full transition-all"
-            style={{ background: current === index ? "#1A3829" : "#D8E8DC" }}
-          />
+    <div className="max-w-6xl mx-auto">
+      {/* Desktop: Grid */}
+      <div className="hidden md:grid grid-cols-3 gap-4 p-4">
+        {reviews.map((review, index) => (
+          <ReviewCard key={index} review={review} index={index} expanded={expanded} toggleExpand={toggleExpand} />
         ))}
       </div>
 
-      {/* Mobile Navigation - Swipe hints and dots */}
+      {/* Mobile: Horizontal scroll */}
+      <div 
+        ref={scrollRef}
+        className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-3 px-4 pb-4 scrollbar-hide"
+        style={{ scrollBehavior: 'smooth' }}
+      >
+        {reviews.map((review, index) => (
+          <div key={index} className="flex-shrink-0 w-[85vw] snap-center">
+            <ReviewCard review={review} index={index} expanded={expanded} toggleExpand={toggleExpand} />
+          </div>
+        ))}
+      </div>
+
+      {/* Dots - Mobile only */}
       <div className="md:hidden flex justify-center gap-2 mt-4">
         {reviews.map((_, index) => (
           <button
             key={index}
-            onClick={() => setCurrent(index)}
-            className="w-3 h-3 rounded-full transition-all"
-            style={{ background: current === index ? "#1A3829" : "#D8E8DC" }}
+            className="w-2 h-2 rounded-full bg-[#D8E8DC] transition-all"
           />
         ))}
       </div>
+    </div>
+  );
+}
+
+function ReviewCard({ review, index, expanded, toggleExpand }: { 
+  review: Review; 
+  index: number; 
+  expanded: { [key: number]: boolean };
+  toggleExpand: (index: number) => void;
+}) {
+  const isExpanded = expanded[index] || false;
+  
+  return (
+    <div className="p-4 md:p-6 rounded-xl" style={{ background: "#F9F9F9" }}>
+      {/* Header */}
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold" style={{ background: "#1A3829", color: "#fff" }}>
+            {review.name.charAt(0)}
+          </div>
+          <div>
+            <p className="font-semibold text-sm" style={{ color: "#111C17" }}>{review.name}</p>
+            <p className="text-xs" style={{ color: "#6B7C72" }}>{review.date}</p>
+          </div>
+        </div>
+        <Image 
+          src="/images/GoogleLogo.svg.webp" 
+          alt="Google" 
+          width={20} 
+          height={20}
+          className="opacity-80"
+        />
+      </div>
+
+      {/* Rating */}
+      <div className="flex items-center gap-2 mb-2">
+        <div className="flex gap-0.5">
+          {[...Array(5)].map((_, i) => (
+            <span key={i} className="text-xs" style={{ color: "#F59E0B" }}>★</span>
+          ))}
+        </div>
+      </div>
+
+      {/* Text */}
+      <p className="text-xs leading-relaxed" style={{ color: "#3D4D43" }}>
+        {review.text.length > 120 && !isExpanded ? (
+          <>
+            {review.text.slice(0, 120)}...
+            <button 
+              onClick={() => toggleExpand(index)}
+              className="ml-1 font-medium hover:underline"
+              style={{ color: "#1A3829" }}
+            >
+              Lire la suite
+            </button>
+          </>
+        ) : (
+          <>
+            {review.text}
+            {review.text.length > 120 && (
+              <button 
+                onClick={() => toggleExpand(index)}
+                className="ml-1 font-medium hover:underline"
+                style={{ color: "#1A3829" }}
+              >
+                Réduire
+              </button>
+            )}
+          </>
+        )}
+      </p>
     </div>
   );
 }
