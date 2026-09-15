@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Figtree, Bricolage_Grotesque } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Chatbot from "@/components/Chatbot";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -38,6 +39,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Chatbot />
       </body>
     </html>
   );
