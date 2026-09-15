@@ -64,7 +64,18 @@ const reviews: Review[] = [
 export default function GoogleReviews() {
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const cardsPerView = isMobile ? 1 : 3;
+  const totalSlides = Math.ceil(reviews.length / cardsPerView);
 
   const handleScroll = () => {
     if (scrollRef.current) {
@@ -72,9 +83,10 @@ export default function GoogleReviews() {
       const scrollLeft = container.scrollLeft;
       const firstCard = container.querySelector('.review-card') as HTMLElement;
       if (firstCard) {
-        const cardWidth = firstCard.offsetWidth + 12; // gap
-        const newSlide = Math.round(scrollLeft / cardWidth);
-        setCurrentSlide(Math.min(newSlide, reviews.length - 1));
+        const cardWidth = firstCard.offsetWidth + 12;
+        const rawSlide = scrollLeft / cardWidth;
+        const newSlide = Math.floor(rawSlide / cardsPerView);
+        setCurrentSlide(Math.min(newSlide, totalSlides - 1));
       }
     }
   };
@@ -105,7 +117,7 @@ export default function GoogleReviews() {
 
       {/* Dots indicator */}
       <div className="flex justify-center gap-2 mt-4">
-        {reviews.map((_, index) => (
+        {Array.from({ length: totalSlides }).map((_, index) => (
           <button
             key={index}
             className="w-2 h-2 rounded-full transition-all"
