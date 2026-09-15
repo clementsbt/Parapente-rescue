@@ -130,7 +130,7 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section className="py-12 md:py-24 px-4 md:px-14 max-w-6xl mx-auto min-h-screen lg:min-h-0">
+      <section className="py-12 md:py-24 px-4 md:px-14 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <ScrollEffect>
             <Tag>Notre savoir-faire</Tag>
@@ -170,7 +170,7 @@ export default function Home() {
       </section>
 
       {/* Process */}
-      <section className="py-12 md:py-24 px-4 md:px-14 min-h-screen lg:min-h-0" style={{ background: "#fff" }}>
+      <section className="py-12 md:py-24 px-4 md:px-14" style={{ background: "#fff" }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8 md:mb-16">
             <ScrollEffect>
@@ -200,7 +200,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-12 md:py-24 px-4 md:px-14 min-h-screen lg:min-h-0">
+      <section className="py-12 md:py-24 px-4 md:px-14">
         <div className="max-w-6xl mx-auto mb-12">
           <div className="flex items-center gap-3 mb-4">
             <Image 
@@ -220,7 +220,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="mx-0 md:mx-14 mb-0 rounded-sm py-20 px-4 md:px-10 text-center relative overflow-hidden min-h-screen lg:min-h-0" style={{ background: FOREST }}>
+      <section className="mx-6 md:mx-14 mb-0 rounded-sm py-20 px-10 text-center relative overflow-hidden" style={{ background: FOREST }}>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-64 h-64 rounded-full" style={{ background: "radial-gradient(circle, #fff 0%, transparent 70%)" }} />
           <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full" style={{ background: "radial-gradient(circle, #fff 0%, transparent 70%)" }} />
