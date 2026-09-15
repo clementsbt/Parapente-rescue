@@ -27,7 +27,7 @@ export default function Home() {
       {/* Mobile Hero */}
       <section className="lg:hidden h-screen flex flex-col pt-[64px]">
         {/* Image Hero */}
-        <div className="relative h-1/2 w-full">
+        <div className="relative h-4/5 w-full">
           <Image 
             src={IMG.hero}
             alt="Parapente dans les Alpes"
@@ -64,7 +64,7 @@ export default function Home() {
         </div>
 
         {/* Stats */}
-        <div className="flex-1 flex items-center justify-around px-5 w-full" style={{ background: "#e1ece5" }}>
+        <div className="h-1/5 flex items-center justify-around px-5 w-full" style={{ background: "#e1ece5" }}>
           {[
             { val: "12+", label: "Années" },
             { val: "100%", label: "Satisfaction" },
