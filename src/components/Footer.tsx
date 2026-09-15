@@ -24,10 +24,10 @@ export default function Footer() {
             Atelier professionnel de réparation et de révision de voiles de parapente. Basé à quelques minutes de Saint-Hilaire du Touvet.
           </p>
           <div className="mt-6 flex gap-3">
-            <a href="https://instagram.com/parapente_rescue" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-sm flex items-center justify-center cursor-pointer opacity-60 hover:opacity-100 transition-opacity" style={{ border: "1px solid #2A5940" }}>
+            <a href="https://www.instagram.com/chauvin_hugo_/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-sm flex items-center justify-center cursor-pointer opacity-60 hover:opacity-100 transition-opacity" style={{ border: "1px solid #2A5940" }}>
               <Image src="/images/instagram.svg" alt="Instagram" width={18} height={18} />
             </a>
-            <a href="https://youtube.com/@ParapenteRescue" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-sm flex items-center justify-center cursor-pointer opacity-60 hover:opacity-100 transition-opacity" style={{ border: "1px solid #2A5940" }}>
+            <a href="https://www.youtube.com/@hugochauvin8999/featured" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-sm flex items-center justify-center cursor-pointer opacity-60 hover:opacity-100 transition-opacity" style={{ border: "1px solid #2A5940" }}>
               <Image src="/images/youtube.svg" alt="YouTube" width={18} height={18} />
             </a>
           </div>
