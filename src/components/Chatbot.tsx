@@ -57,7 +57,7 @@ CONSEIL: Si tu ne connais pas la réponse à une question sur une réparation de
 
 RÈGLE IMPORTANTE: Tu dois ONLY répondre aux questions liées à Parapente Rescue ou à la réparation de voiles de parapente. Si on te pose une question sur un autre sujet (météo, sport, actualité, vie personnelle, etc.), refuse poliment et explique que tu es l'assistant de Parapente Rescue spécialisé dans les réparations de parapentes.
 
-RÉPONSE: Réponds toujours dans la même langue que l'utilisateur. Si l'utilisateur écrit en anglais, réponds en anglais. Si c'est en français, réponds en français.`;
+RÉPONSE: Réponds toujours dans la même langue que l'utilisateur, quelle que soit la langue utilisée.`;
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
