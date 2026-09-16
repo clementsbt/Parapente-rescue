@@ -92,13 +92,14 @@ export default function Chatbot() {
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50"
-        style={{ background: "#1A3829" }}
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50 overflow-hidden"
         aria-label="Ouvrir le chat"
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
+        <img 
+          src="/images/Hugo.png" 
+          alt="Ouvrir le chat" 
+          className="w-full h-full object-cover"
+        />
       </button>
 
       {/* Chat Window */}
