@@ -48,6 +48,7 @@ Autres infos:
 - Délai moyen de diagnostic: 48h
 - Réparations: accrocs, déchirures, coutures, suspentes, changement de panneaux
 - Réparation urgente possible en quelques jours
+- Envoi et retour des voiles par Chronopost (France métropolitaine)
 - Contact: +33 (0)6 85 45 22 44, atelier@parapenterescue.fr
 - Horaires: sur rendez-vous
 - Le technicien: Hugo
