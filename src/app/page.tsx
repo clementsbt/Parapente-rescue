@@ -130,7 +130,7 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section className="py-12 md:py-24 px-4 md:px-14 max-w-6xl mx-auto">
+      <section className="py-12 md:py-24 px-4 md:px-14 max-w-6xl mx-auto border-t" style={{ borderColor: "#D8E8DC" }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <ScrollEffect>
             <Tag>Notre savoir-faire</Tag>
