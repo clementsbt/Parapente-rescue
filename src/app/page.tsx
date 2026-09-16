@@ -170,7 +170,7 @@ export default function Home() {
       </section>
 
       {/* Process */}
-      <section className="py-12 md:py-24 px-4 md:px-14" style={{ background: "#fff" }}>
+      <section className="py-12 md:py-24 px-4 md:px-14" style={{ background: "#D8E8DC" }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8 md:mb-16">
             <ScrollEffect>
