@@ -13,10 +13,13 @@ function parseMessageContent(content: string) {
   // Replace **text** with <strong>text</strong>
   let parsed = content.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
   
-  // Replace URLs with clickable links
+  // Replace URLs with clickable links (exclude trailing punctuation)
   parsed = parsed.replace(
     /(https?:\/\/[^\s<]+)/g,
-    '<a href="$1" target="_blank" rel="noopener noreferrer" style="color: #1A3829; text-decoration: underline;">$1</a>'
+    (match) => {
+      const cleaned = match.replace(/[.,;:!?]+$/, '');
+      return `<a href="${cleaned}" target="_blank" rel="noopener noreferrer" style="color: #1A3829; text-decoration: underline;">${cleaned}</a>`;
+    }
   );
   
   // Replace phone numbers with clickable tel: links
