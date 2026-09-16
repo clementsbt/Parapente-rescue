@@ -67,6 +67,23 @@ export default function Chatbot() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatWindowRef = useRef<HTMLDivElement>(null);
+
+  // Close chat when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isOpen && chatWindowRef.current && !chatWindowRef.current.contains(event.target as Node)) {
+        // Check if click is not on the chat button
+        const chatButton = document.querySelector('[aria-label="Ouvrir le chat"]');
+        if (chatButton && !chatButton.contains(event.target as Node)) {
+          setIsOpen(false);
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -142,6 +159,7 @@ export default function Chatbot() {
 
       {/* Chat Window */}
       {isOpen && (
+        <div ref={chatWindowRef}>
         <div className="fixed bottom-24 right-6 w-[90vw] md:w-96 h-[70vh] max-h-[600px] rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50" style={{ background: "#fff" }}>
           {/* Header */}
           <div className="p-4 flex items-center justify-between" style={{ background: "#1A3829" }}>
@@ -224,6 +242,7 @@ export default function Chatbot() {
               </button>
             </div>
           </div>
+        </div>
         </div>
       )}
     </>
