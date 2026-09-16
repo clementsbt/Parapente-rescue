@@ -107,11 +107,11 @@ export default function Chatbot() {
           {/* Header */}
           <div className="p-4 flex items-center justify-between" style={{ background: "#1A3829" }}>
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                </svg>
-              </div>
+              <img 
+                src="/images/Hugo.png" 
+                alt="Hugo" 
+                className="w-8 h-8 rounded-full object-cover"
+              />
               <div>
                 <p className="text-white font-semibold text-sm">Parapente Rescue</p>
                 <p className="text-white/70 text-xs">En ligne</p>
