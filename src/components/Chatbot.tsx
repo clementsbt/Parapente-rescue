@@ -8,6 +8,29 @@ interface Message {
   content: string;
 }
 
+// Parse markdown and make links/phones clickable
+function parseMessageContent(content: string) {
+  // Replace **text** with <strong>text</strong>
+  let parsed = content.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  
+  // Replace URLs with clickable links
+  parsed = parsed.replace(
+    /(https?:\/\/[^\s<]+)/g,
+    '<a href="$1" target="_blank" rel="noopener noreferrer" style="color: #1A3829; text-decoration: underline;">$1</a>'
+  );
+  
+  // Replace phone numbers with clickable tel: links
+  parsed = parsed.replace(
+    /(?:\+33|0)[0-9][\s.-]?[0-9]{1,2}[\s.-]?[0-9]{2}[\s.-]?[0-9]{2}[\s.-]?[0-9]{2}/g,
+    (match) => `<a href="tel:${match.replace(/[\s.-]/g, '')}" style="color: #1A3829; text-decoration: underline;">${match}</a>`
+  );
+  
+  // Replace newlines with <br />
+  parsed = parsed.replace(/\n/g, '<br />');
+  
+  return parsed;
+}
+
 const context = `Tu es un assistant virtuel pour Parapente Rescue, un atelier de réparation de voiles de parapente basé à Goncelin, près de Saint-Hilaire du Touvet en Isère.
 
 INFORMATIONS TARIFAIRES (connais ces prix par cœur):
@@ -151,7 +174,7 @@ export default function Chatbot() {
                     boxShadow: "0 1px 2px rgba(0,0,0,0.1)"
                   }}
                 >
-                  {msg.content}
+                  <span dangerouslySetInnerHTML={{ __html: parseMessageContent(msg.content) }} />
                 </div>
               </div>
             ))}
