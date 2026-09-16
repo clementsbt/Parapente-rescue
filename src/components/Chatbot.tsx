@@ -147,7 +147,7 @@ export default function Chatbot() {
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center shadow-none transition-transform hover:scale-110 z-50 overflow-visible"
+        className="fixed bottom-6 right-6 w-20 h-20 md:w-24 md:h-24 flex items-center justify-center shadow-none transition-transform hover:scale-110 z-50 overflow-visible"
         aria-label="Ouvrir le chat"
       >
         <img 
