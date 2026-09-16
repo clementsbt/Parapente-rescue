@@ -178,6 +178,13 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
                 Comment nous sauvons votre voile
               </h2>
+              <div className="mt-8">
+                <img 
+                  src="/images/Falcon.jpg.webp" 
+                  alt="FalconLW réparée" 
+                  className="mx-auto rounded-sm max-h-[300px] object-contain"
+                />
+              </div>
             </ScrollEffect>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
