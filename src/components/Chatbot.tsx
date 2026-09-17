@@ -1,6 +1,5 @@
 "use client";
 
-// Parapente Rescue AI Chatbot v2
 import { useState, useRef, useEffect } from "react";
 
 interface Message {
@@ -8,18 +7,17 @@ interface Message {
   content: string;
 }
 
-interface DevisForm {
+interface DevisState {
+  active: boolean;
+  step: 'start' | 'name' | 'email' | 'phone' | 'wing' | 'description' | 'confirm';
   fullName?: string;
   email?: string;
   phone?: string;
   wingBrand?: string;
   wingModel?: string;
-  interventionType?: string;
   description?: string;
-  step: number;
 }
 
-// Parse markdown and make links/phones clickable
 function parseMessageContent(content: string) {
   let parsed = content.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
   parsed = parsed.replace(
@@ -39,38 +37,28 @@ function parseMessageContent(content: string) {
 
 const context = `Tu es un assistant virtuel pour Parapente Rescue, un atelier de réparation de voiles de parapente basé à Goncelin, près de Saint-Hilaire du Touvet en Isère.
 
-INFORMATIONS TARIFAIRES (connais ces prix par cœur):
-- Changement Intrados: Complet 150€, Partiel 80€, Ripstop + couture 25€
-- Changement Extrados: Complet 140€, Partiel 70€, Ripstop + couture 20€
-- Changement Profil (le plus demandé): Complet 200€, Partiel 100€, Ripstop + couture 30€
-- Changement Diagonal: Complet 45€, Partiel 25€, Ripstop + couture 25€
-- Pose d'un Ripstop sans couture: 15€
+INFORMATIONS TARIFAIRES:
+- Changement Intrados: Complet 150€, Partiel 80€
+- Changement Extrados: Complet 140€, Partiel 70€
+- Changement Profil: Complet 200€, Partiel 100€
+- Changement Diagonal: Complet 45€, Partiel 25€
+- Pose d'un Ripstop: 15€
 - Changement d'une suspente: 15€
 
 Autres infos:
-- Délai moyen de diagnostic: 48h
-- Réparations: accrocs, déchirures, coutures, suspentes, changement de panneaux
-- Réparation urgente possible en quelques jours
-- Envoi et retour des voiles par Chronopost (France métropolitaine)
+- Délai moyen: 48h
 - Contact: +33 (0)6 85 45 22 44, atelier@parapenterescue.fr
-- Horaires: sur rendez-vous
-- Le technician: Hugo
 
-RÈGLE IMPORTANTE: Tu dois ONLY répondre aux questions liées à Parapente Rescue ou à la réparation de voiles de parapente. Si on te pose une question sur un autre sujet (météo, sport, actualité, vie personnelle, etc.), refuse poliment et explique que tu es l'assistant de Parapente Rescue spécialisé dans les réparations de parapentes.
-
-RÉPONSE: Réponds toujours dans la même langue que l'utilisateur, quelle que soit la langue utilisée.`;
+RÈGLE: Réponds toujours dans la même langue que l'utilisateur.`;
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [showDevisForm, setShowDevisForm] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: "Bonjour ! Je suis l'assistant Parapente Rescue. Comment puis-vous vous aider ? (tarifs, réparations, devis...)" }
+    { role: "assistant", content: "Bonjour ! Je suis l'assistant Parapente Rescue. Comment puis-je vous aider ? (tarifs, réparations, devis...)" }
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [devisForm, setDevisForm] = useState<DevisForm>({ step: 0 });
-  const [devisLoading, setDevisLoading] = useState(false);
-  const [devisSuccess, setDevisSuccess] = useState(false);
+  const [devis, setDevis] = useState<DevisState>({ active: false, step: 'start' });
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatWindowRef = useRef<HTMLDivElement>(null);
 
@@ -95,14 +83,12 @@ export default function Chatbot() {
     scrollToBottom();
   }, [messages]);
 
-  const sendMessage = async () => {
-    if (!input.trim() || isLoading) return;
-    
-    const userMessage = input.trim();
-    setInput("");
-    setMessages(prev => [...prev, { role: "user", content: userMessage }]);
-    setIsLoading(true);
+  const addMessage = (role: "user" | "assistant", content: string) => {
+    setMessages(prev => [...prev, { role, content }]);
+  };
 
+  const sendToApi = async (userMessage: string) => {
+    setIsLoading(true);
     try {
       const response = await fetch("/api/chatbot", {
         method: "POST",
@@ -113,60 +99,122 @@ export default function Chatbot() {
           history: messages.slice(-6)
         })
       });
-
       const data = await response.json();
-      
-      if (data.error) {
-        setMessages(prev => [...prev, { 
-          role: "assistant", 
-          content: "Désolé, une erreur est survenue. Veuillez réessayer ou nous contacter directement." 
-        }]);
-      } else {
-        setMessages(prev => [...prev, { 
-          role: "assistant", 
-          content: data.response 
-        }]);
-      }
-    } catch (error) {
-      setMessages(prev => [...prev, { 
-        role: "assistant", 
-        content: "Désolé, une erreur est survenue. Veuillez réessayer ou nous contacter directement." 
-      }]);
+      addMessage("assistant", data.response || "Désolé, une erreur est survenue.");
+    } catch {
+      addMessage("assistant", "Désolé, une erreur est survenue. Veuillez réessayer.");
     }
-
     setIsLoading(false);
   };
 
-  const handleDevisSubmit = async () => {
-    setDevisLoading(true);
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...devisForm,
-          logistics: 'expedition',
-        }),
-      });
-      if (res.ok) {
-        setDevisSuccess(true);
+  const sendMessage = () => {
+    if (!input.trim() || isLoading) return;
+    
+    const userMessage = input.trim();
+    setInput("");
+    addMessage("user", userMessage);
+
+    // Gestion du flux devis conversationnel
+    if (devis.active) {
+      handleDevisStep(userMessage);
+    } else {
+      // Vérifier si l'utilisateur demande un devis
+      if (userMessage.toLowerCase().includes('devis') || 
+          userMessage.toLowerCase().includes('réparation') ||
+          userMessage.toLowerCase().includes('réparer')) {
+        addMessage("assistant", "Je serais ravi de vous aider ! Voulez-vous que je vous prépare une demande de devis ? (répondez simplement oui ou non)");
+        setDevis({ active: true, step: 'start' });
       } else {
-        alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+        sendToApi(userMessage);
       }
-    } catch {
-      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
     }
-    setDevisLoading(false);
+  };
+
+  const handleDevisStep = async (userMessage: string) => {
+    const currentStep = devis.step;
+    let nextStep: DevisState = { ...devis };
+    let botResponse = "";
+
+    switch (currentStep) {
+      case 'start':
+        if (userMessage.toLowerCase().includes('oui') || userMessage.toLowerCase() === 'ok' || userMessage.toLowerCase() === 'yes') {
+          botResponse = "Parfait ! Commençons. Quel est votre nom complet ?";
+          nextStep.step = 'name';
+        } else {
+          botResponse = "Pas de problème ! Comment puis-je vous aider autrement ?";
+          nextStep = { active: false, step: 'start' };
+        }
+        break;
+
+      case 'name':
+        if (userMessage.length < 2) {
+          botResponse = "Pouvez-vous me donner votre nom complet ?";
+        } else {
+          nextStep.fullName = userMessage;
+          botResponse = "Merci ! Quelle est votre adresse email ?";
+          nextStep.step = 'email';
+        }
+        break;
+
+      case 'email':
+        if (!userMessage.includes('@') || !userMessage.includes('.')) {
+          botResponse = "L'email ne semble pas valide. Pouvez-vous me donner un email valide ?";
+        } else {
+          nextStep.email = userMessage;
+          botResponse = "Parfait ! (optionnel) Quel est votre numéro de téléphone ?";
+          nextStep.step = 'phone';
+        }
+        break;
+
+      case 'phone':
+        if (userMessage.trim()) {
+          nextStep.phone = userMessage;
+        }
+        botResponse = "Quelle est la marque de votre aile ? (ex: Ozone, Niviuk, Advance...)";
+        nextStep.step = 'wing';
+        break;
+
+      case 'wing':
+        nextStep.wingBrand = userMessage;
+        botResponse = "Et le modèle de votre aile ? (ex: Hook 5, Enjoi 2, Peak 5...)";
+        nextStep.step = 'description';
+        break;
+
+      case 'description':
+        nextStep.description = userMessage;
+        
+        // Envoyer le devis
+        try {
+          await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              fullName: nextStep.fullName,
+              email: nextStep.email,
+              phone: nextStep.phone,
+              wingBrand: nextStep.wingBrand,
+              wingModel: nextStep.wingModel,
+              interventionType: 'Demande via chatbot',
+              description: nextStep.description,
+              logistics: 'expedition',
+            }),
+          });
+          botResponse = "✅ Votre demande de devis a été envoyée ! Nous vous répondrons sous 48h à l'adresse " + nextStep.email + ".";
+        } catch {
+          botResponse = "Une erreur est survenue lors de l'envoi. Veuillez réessayer ou nous contacter directement.";
+        }
+        nextStep = { active: false, step: 'start' };
+        break;
+    }
+
+    addMessage("assistant", botResponse);
+    setDevis(nextStep);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      if (showDevisForm) {
-        handleDevisSubmit();
-      } else {
-        sendMessage();
-      }
+      sendMessage();
     }
   };
 
@@ -200,7 +248,7 @@ export default function Chatbot() {
               </div>
             </div>
             <button 
-              onClick={() => { setIsOpen(false); setShowDevisForm(false); setDevisSuccess(false); setDevisForm({ step: 0 }); }}
+              onClick={() => { setIsOpen(false); setDevis({ active: false, step: 'start' }); }}
               className="text-white/70 hover:text-white"
               aria-label="Fermer le chat"
             >
@@ -226,104 +274,6 @@ export default function Chatbot() {
                 </div>
               </div>
             ))}
-
-            {showDevisForm && !devisSuccess && (
-              <div className="bg-white rounded-xl p-4 shadow-sm space-y-3">
-                <p className="text-sm font-semibold" style={{ color: "#1A3829" }}>Demande de devis</p>
-                
-                <input
-                  type="text"
-                  placeholder="Votre nom complet *"
-                  value={devisForm.fullName || ''}
-                  onChange={(e) => setDevisForm({ ...devisForm, fullName: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border rounded-lg outline-none"
-                  style={{ borderColor: "#D8E8DC" }}
-                />
-                
-                <input
-                  type="email"
-                  placeholder="Votre email *"
-                  value={devisForm.email || ''}
-                  onChange={(e) => setDevisForm({ ...devisForm, email: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border rounded-lg outline-none"
-                  style={{ borderColor: "#D8E8DC" }}
-                />
-                
-                <input
-                  type="tel"
-                  placeholder="Téléphone"
-                  value={devisForm.phone || ''}
-                  onChange={(e) => setDevisForm({ ...devisForm, phone: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border rounded-lg outline-none"
-                  style={{ borderColor: "#D8E8DC" }}
-                />
-                
-                <input
-                  type="text"
-                  placeholder="Marque de l'aile (ex: Ozone, Niviuk...)"
-                  value={devisForm.wingBrand || ''}
-                  onChange={(e) => setDevisForm({ ...devisForm, wingBrand: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border rounded-lg outline-none"
-                  style={{ borderColor: "#D8E8DC" }}
-                />
-                
-                <input
-                  type="text"
-                  placeholder="Modèle et taille"
-                  value={devisForm.wingModel || ''}
-                  onChange={(e) => setDevisForm({ ...devisForm, wingModel: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border rounded-lg outline-none"
-                  style={{ borderColor: "#D8E8DC" }}
-                />
-                
-                <select
-                  value={devisForm.interventionType || ''}
-                  onChange={(e) => setDevisForm({ ...devisForm, interventionType: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border rounded-lg outline-none bg-white"
-                  style={{ borderColor: "#D8E8DC" }}
-                >
-                  <option value="">Type d'intervention *</option>
-                  <option value="Réparation de déchirure / panneau de tissu">Réparation de déchirure</option>
-                  <option value="Remplacement de suspentes">Remplacement de suspentes</option>
-                  <option value="Bord d'attaque / fuite">Bord d'attaque / fuite</option>
-                  <option value="Diagnostics & révision complète">Diagnostics & révision complète</option>
-                  <option value="Autre">Autre</option>
-                </select>
-                
-                <textarea
-                  placeholder="Description du problème *"
-                  value={devisForm.description || ''}
-                  onChange={(e) => setDevisForm({ ...devisForm, description: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border rounded-lg outline-none resize-none"
-                  style={{ borderColor: "#D8E8DC" }}
-                  rows={3}
-                />
-                
-                <button
-                  onClick={handleDevisSubmit}
-                  disabled={devisLoading || !devisForm.fullName || !devisForm.email || !devisForm.description}
-                  className="w-full py-2 rounded-lg text-sm font-semibold disabled:opacity-50"
-                  style={{ background: "#1A3829", color: "#fff" }}
-                >
-                  {devisLoading ? 'Envoi...' : 'Envoyer la demande'}
-                </button>
-              </div>
-            )}
-
-            {devisSuccess && (
-              <div className="bg-green-50 border border-green-200 rounded-xl p-4 text-center">
-                <p className="text-green-700 font-semibold text-sm">✅ Demande envoyée !</p>
-                <p className="text-green-600 text-xs mt-1">Nous vous répondrons sous 48h.</p>
-                <button
-                  onClick={() => { setShowDevisForm(false); setDevisSuccess(false); setDevisForm({ step: 0 }); }}
-                  className="mt-2 text-xs underline"
-                  style={{ color: "#1A3829" }}
-                >
-                  Fermer
-                </button>
-              </div>
-            )}
-
             {isLoading && (
               <div className="flex justify-start">
                 <div className="bg-white p-3 rounded-2xl shadow-sm">
@@ -338,40 +288,31 @@ export default function Chatbot() {
             <div ref={messagesEndRef} />
           </div>
 
-          {!showDevisForm && !devisSuccess && (
-            <div className="p-3 border-t" style={{ borderColor: "#E5E5E5" }}>
+          <div className="p-3 border-t" style={{ borderColor: "#E5E5E5" }}>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder={devis.active ? "Votre réponse..." : "Votre message..."}
+                className="flex-1 px-4 py-2 rounded-full border text-sm outline-none focus:ring-2 focus:ring-[#1A3829]"
+                style={{ borderColor: "#E5E5E5" }}
+                disabled={isLoading}
+              />
               <button
-                onClick={() => { setShowDevisForm(true); setMessages(prev => [...prev, { role: "assistant", content: "Parfait ! Remplissez le formulaire ci-dessous pour demander un devis." }]); }}
-                className="w-full py-2 rounded-lg text-sm font-semibold mb-2"
-                style={{ background: "#1A3829", color: "#fff" }}
+                onClick={sendMessage}
+                disabled={!input.trim() || isLoading}
+                className="w-10 h-10 rounded-full flex items-center justify-center disabled:opacity-50"
+                style={{ background: "#1A3829" }}
               >
-                Demander un devis
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
               </button>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  placeholder="Votre message..."
-                  className="flex-1 px-4 py-2 rounded-full border text-sm outline-none focus:ring-2 focus:ring-[#1A3829]"
-                  style={{ borderColor: "#E5E5E5" }}
-                  disabled={isLoading}
-                />
-                <button
-                  onClick={sendMessage}
-                  disabled={!input.trim() || isLoading}
-                  className="w-10 h-10 rounded-full flex items-center justify-center disabled:opacity-50"
-                  style={{ background: "#1A3829" }}
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                    <line x1="22" y1="2" x2="11" y2="13"/>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                  </svg>
-                </button>
-              </div>
             </div>
-          )}
+          </div>
         </div>
         </div>
       )}
