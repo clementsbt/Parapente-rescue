@@ -142,7 +142,15 @@ export default function Chatbot() {
         addMessage("assistant", "Je serais ravi de vous aider ! Voulez-vous que je vous prépare une demande de devis ? (répondez simplement oui ou non)");
         setDevis({ active: true, step: 'start' });
       } else {
-        sendToApi(userMessage);
+        // Vérifier si la question est en contexte
+        const keywords = ['tarif', 'prix', 'réparation', 'réparer', 'devis', 'parapente', 'voile', 'aile', 'suspente', 'déchirure', 'accroc', 'bord d\'attaque', 'intrados', 'extrados', 'diagnostic', 'délai', 'envoi', 'expédition', 'colis', 'chronopost', 'atelier', 'goncelin', 'isère', 'alpes', 'vol', 'pilote', 'revision', 'révision', 'réparer'];
+        const isInContext = keywords.some(keyword => userMessage.toLowerCase().includes(keyword));
+        
+        if (!isInContext) {
+          addMessage("assistant", "Désolé, je suis l'assistant de Parapente Rescue et je ne peux répondre qu'aux questions sur nos réparations de voiles de parapente, nos tarifs, délais et services. Posez-moi vos questions sur ces sujets ! 😃");
+        } else {
+          sendToApi(userMessage);
+        }
       }
     }
   };
