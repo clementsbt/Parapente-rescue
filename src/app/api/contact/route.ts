@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const toEmail = 'atelier@parapenterescue.fr';
+const toEmail = 'clementsubtil2006@gmail.com';
 const fromEmail = process.env.FROM_EMAIL || 'noreply@parapenterescue.fr';
 
 export async function POST(request: Request) {
