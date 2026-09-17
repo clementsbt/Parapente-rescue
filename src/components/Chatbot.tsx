@@ -55,7 +55,7 @@ RÈGLE: Réponds toujours dans la même langue que l'utilisateur.`;
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: "Bonjour ! Je suis l'assistant de Parapente Rescue. Je peux vous renseigner sur nos réparations, les tarifs, les délais et l'envoi de votre voile. Souhaitez-vous que je vous aide à préparer une demande de devis ? Répondez simplement oui ou non." }
+    { role: "assistant", content: "Bonjour ! Je suis l'assistant de Parapente Rescue. Je peux vous renseigner sur nos réparations, les tarifs, les délais et l'envoi de votre voile. Souhaitez-vous que je vous aide à préparer une demande de devis ? Répondez simplement oui ou sinon envoyez-moi vos questions 😃" }
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
