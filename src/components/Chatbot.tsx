@@ -9,7 +9,7 @@ interface Message {
 
 interface DevisState {
   active: boolean;
-  step: 'start' | 'name' | 'email' | 'phone' | 'wing' | 'description' | 'confirm';
+  step: 'start' | 'name' | 'email' | 'phone' | 'wing' | 'model' | 'type' | 'description' | 'logistics';
   fullName?: string;
   email?: string;
   phone?: string;
@@ -180,8 +180,32 @@ export default function Chatbot() {
         nextStep.step = 'description';
         break;
 
-      case 'description':
+      case 'wing':
+        nextStep.wingBrand = userMessage;
+        botResponse = "Et le modèle de votre aile ? (ex: Hook 5, Enjoi 2, Peak 5...)";
+        nextStep.step = 'model';
+        break;
+
+      case 'model':
+        nextStep.wingModel = userMessage;
+        botResponse = "Quel type de réparation avez-vous besoin ? (déchirure, suspentes, bord d'attaque, révision complète, autre)";
+        nextStep.step = 'type';
+        break;
+
+      case 'type':
         nextStep.description = userMessage;
+        botResponse = "Décrivez le problème en quelques mots (localisation, taille de l'accroc, etc.)";
+        nextStep.step = 'description';
+        break;
+
+      case 'description':
+        nextStep.description = (nextStep.description || '') + '\n\nDétails: ' + userMessage;
+        botResponse = "Préférez-vous expédier votre aile par colis ou la déposer directement à l'atelier ?";
+        nextStep.step = 'logistics';
+        break;
+
+      case 'logistics':
+        const logistics = userMessage.toLowerCase().includes('déposer') || userMessage.toLowerCase().includes('atelier') ? 'depot' : 'expedition';
         
         // Envoyer le devis
         try {
@@ -194,9 +218,9 @@ export default function Chatbot() {
               phone: nextStep.phone,
               wingBrand: nextStep.wingBrand,
               wingModel: nextStep.wingModel,
-              interventionType: 'Demande via chatbot',
+              interventionType: nextStep.description?.split('\n')[0] || 'Demande via chatbot',
               description: nextStep.description,
-              logistics: 'expedition',
+              logistics: logistics,
             }),
           });
           botResponse = "✅ Votre demande de devis a été envoyée ! Nous vous répondrons sous 48h à l'adresse " + nextStep.email + ".";
