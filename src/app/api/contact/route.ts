@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const toEmail = 'clementsubtil2006@gmail.com';
-const fromEmail = process.env.FROM_EMAIL || 'noreply@parapenterescue.fr';
+const fromEmail = 'Parapente Rescue <onboarding@resend.dev>';
 
 export async function POST(request: Request) {
   try {
