@@ -178,12 +178,6 @@ export default function Chatbot() {
       case 'wing':
         nextStep.wingBrand = userMessage;
         botResponse = "Et le modèle de votre aile ? (ex: Hook 5, Enjoi 2, Peak 5...)";
-        nextStep.step = 'description';
-        break;
-
-      case 'wing':
-        nextStep.wingBrand = userMessage;
-        botResponse = "Et le modèle de votre aile ? (ex: Hook 5, Enjoi 2, Peak 5...)";
         nextStep.step = 'model';
         break;
 
