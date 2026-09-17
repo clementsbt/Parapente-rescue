@@ -15,6 +15,7 @@ interface DevisState {
   phone?: string;
   wingBrand?: string;
   wingModel?: string;
+  interventionType?: string;
   description?: string;
 }
 
@@ -193,7 +194,7 @@ export default function Chatbot() {
         break;
 
       case 'type':
-        nextStep.description = userMessage;
+        nextStep.interventionType = userMessage;
         botResponse = "Décrivez le problème en quelques mots (localisation, taille de l'accroc, etc.)";
         nextStep.step = 'description';
         break;
@@ -218,7 +219,7 @@ export default function Chatbot() {
               phone: nextStep.phone,
               wingBrand: nextStep.wingBrand,
               wingModel: nextStep.wingModel,
-              interventionType: nextStep.description?.split('\n')[0] || 'Demande via chatbot',
+              interventionType: nextStep.interventionType || 'Demande via chatbot',
               description: nextStep.description,
               logistics: logistics,
             }),
