@@ -55,7 +55,7 @@ RÈGLE: Réponds toujours dans la même langue que l'utilisateur.`;
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: "Bonjour ! Je suis l'assistant Parapente Rescue. Comment puis-je vous aider ? (tarifs, réparations, devis...)" }
+    { role: "assistant", content: "Bonjour ! Je suis l'assistant de Parapente Rescue. Je peux vous renseigner sur nos réparations, les tarifs, les délais et l'envoi de votre voile. Souhaitez-vous que je vous aide à préparer une demande de devis ? Répondez simplement oui ou non." }
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -116,7 +116,19 @@ export default function Chatbot() {
     addMessage("user", userMessage);
 
     // Gestion du flux devis conversationnel
-    if (devis.active) {
+    if (devis.active && devis.step === 'start') {
+      // Si on est à l'étape 'start' et que l'utilisateur dit oui, commencer directement
+      if (userMessage.toLowerCase().includes('oui') || userMessage.toLowerCase() === 'ok' || userMessage.toLowerCase() === 'yes' || userMessage.toLowerCase() === 'o') {
+        addMessage("assistant", "Parfait ! Commençons. Quel est votre nom complet ?");
+        setDevis({ active: true, step: 'name' });
+        return;
+      } else {
+        // L'utilisateur refuse ou autre
+        addMessage("assistant", "Pas de problème ! Comment puis-je vous aider autrement ?");
+        setDevis({ active: false, step: 'start' });
+        return;
+      }
+    } else if (devis.active) {
       handleDevisStep(userMessage);
     } else {
       // Vérifier si l'utilisateur demande un devis
