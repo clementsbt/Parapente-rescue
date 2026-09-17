@@ -132,7 +132,11 @@ export default function Chatbot() {
       handleDevisStep(userMessage);
     } else {
       // Vérifier si l'utilisateur demande un devis
-      if (userMessage.toLowerCase().includes('devis') || 
+      if (userMessage.toLowerCase().includes('oui') || userMessage.toLowerCase() === 'ok' || userMessage.toLowerCase() === 'yes' || userMessage.toLowerCase() === 'o') {
+        // Si l'utilisateur répond oui directement, commencer le devis
+        addMessage("assistant", "Parfait ! Commençons. Quel est votre nom complet ?");
+        setDevis({ active: true, step: 'name' });
+      } else if (userMessage.toLowerCase().includes('devis') || 
           userMessage.toLowerCase().includes('réparation') ||
           userMessage.toLowerCase().includes('réparer')) {
         addMessage("assistant", "Je serais ravi de vous aider ! Voulez-vous que je vous prépare une demande de devis ? (répondez simplement oui ou non)");
