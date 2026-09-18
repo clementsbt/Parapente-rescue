@@ -200,8 +200,8 @@ export default function Home() {
             <img 
               src="/images/Falcon.jpg.webp" 
               alt="FalconLW réparée" 
-              className="mx-auto rounded-sm w-full max-w-5xl h-auto"
-              style={{ aspectRatio: '16/9', objectFit: 'cover' }}
+              className="mx-auto rounded-sm w-full max-w-6xl h-auto"
+              style={{ aspectRatio: '21/9', objectFit: 'cover' }}
             />
           </div>
         </div>
