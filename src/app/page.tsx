@@ -170,7 +170,7 @@ export default function Home() {
       </section>
 
       {/* Process */}
-      <section className="py-12 md:py-24 px-4 md:px-14 border-t" style={{ borderColor: "#D8E8DC" }}>
+      <section className="py-12 md:py-16 px-4 md:px-14 border-t min-h-screen flex flex-col" style={{ borderColor: "#D8E8DC" }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8 md:mb-16">
             <ScrollEffect>
@@ -196,12 +196,12 @@ export default function Home() {
               </ScrollEffect>
             ))}
           </div>
-          <div className="mt-12">
+          <div className="mt-auto pt-12">
             <img 
               src="/images/Falcon.jpg.webp" 
               alt="FalconLW réparée" 
               className="mx-auto rounded-sm w-full max-w-6xl h-auto"
-              style={{ aspectRatio: '21/9', objectFit: 'cover' }}
+              style={{ aspectRatio: '21/9', objectFit: 'cover', maxHeight: '50vh' }}
             />
           </div>
         </div>
