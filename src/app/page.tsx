@@ -169,7 +169,7 @@ export default function Home() {
         </div>
 
         {/* Desktop: images left (2x2 grid), text right */}
-        <div className="hidden lg:grid grid-cols-2 gap-6 items-stretch h-[calc(100vh-200px)]">
+        <div className="hidden lg:grid grid-cols-2 gap-6 items-stretch">
           <ScrollEffect direction="left">
             <div className="grid grid-cols-2 gap-4 h-full">
               <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
@@ -179,6 +179,7 @@ export default function Home() {
             </div>
           </ScrollEffect>
           <ScrollEffect direction="right">
+            <div className="flex flex-col h-full">
             <Tag>Notre savoir-faire</Tag>
             <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
               Des soins sur-mesure pour votre parapente
@@ -201,6 +202,7 @@ export default function Home() {
                   </div>
                 </ScrollEffect>
               ))}
+            </div>
             </div>
           </ScrollEffect>
         </div>
