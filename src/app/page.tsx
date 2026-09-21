@@ -163,9 +163,7 @@ export default function Home() {
               <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
               <img src={IMG.sewing2} alt="Réparation tissu parapente" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
               <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
-              <div className="rounded-sm flex items-center justify-center" style={{ background: "#D8E8DC" }}>
-                <span className="text-sm font-semibold" style={{ color: FOREST }}>+ d'interventions</span>
-              </div>
+              <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
             </div>
           </ScrollEffect>
         </div>
@@ -177,9 +175,7 @@ export default function Home() {
               <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
               <img src={IMG.sewing2} alt="Réparation tissu parapente" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
               <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
-              <div className="rounded-sm flex items-center justify-center" style={{ background: "#D8E8DC" }}>
-                <span className="text-sm font-semibold" style={{ color: FOREST }}>+ d'interventions</span>
-              </div>
+              <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
             </div>
           </ScrollEffect>
           <ScrollEffect direction="right">
