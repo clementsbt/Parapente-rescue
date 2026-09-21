@@ -170,7 +170,7 @@ export default function Home() {
       </section>
 
       {/* Process */}
-      <section className="py-12 md:py-16 px-4 md:px-14 border-t min-h-screen flex flex-col" style={{ borderColor: "#D8E8DC" }}>
+      <section className="py-12 md:py-16 px-4 md:px-14 border-t" style={{ borderColor: "#D8E8DC" }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8 md:mb-16">
             <ScrollEffect>
@@ -180,7 +180,9 @@ export default function Home() {
               </h2>
             </ScrollEffect>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+          
+          {/* Mobile: stacked cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8 lg:hidden">
             {[
               { n: "01", title: "Décrivez", desc: "Envoyez-nous des photos et les détails des dégâts via le formulaire." },
               { n: "02", title: "Devis", desc: "Réception d'une estimation chiffrée et du délai d'intervention sous 48h." },
@@ -196,13 +198,34 @@ export default function Home() {
               </ScrollEffect>
             ))}
           </div>
-          <div className="mt-auto pt-12">
-            <img 
-              src="/images/Falcon.jpg.webp" 
-              alt="FalconLW réparée" 
-              className="mx-auto rounded-sm w-full max-w-6xl h-auto"
-              style={{ aspectRatio: '21/9', objectFit: 'cover', maxHeight: '50vh' }}
-            />
+
+          {/* Desktop: image left, cards right */}
+          <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-start">
+            <ScrollEffect direction="left">
+              <div className="relative h-full min-h-[400px] rounded-sm overflow-hidden" style={{ background: "#D8E8DC" }}>
+                <img 
+                  src="/images/Falcon.jpg.webp" 
+                  alt="FalconLW réparée" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </ScrollEffect>
+            <ScrollEffect direction="right">
+              <div className="grid grid-cols-2 gap-6">
+                {[
+                  { n: "01", title: "Décrivez", desc: "Envoyez-nous des photos et les détails des dégâts via le formulaire." },
+                  { n: "02", title: "Devis", desc: "Réception d'une estimation chiffrée et du délai d'intervention sous 48h." },
+                  { n: "03", title: "Déposez", desc: "Déposez votre matériel à l'atelier ou expédiez-le par transporteur." },
+                  { n: "04", title: "Récupérez", desc: "Votre aile est prête à voler. Retrait sur place ou renvoi sécurisé." },
+                ].map((s, i) => (
+                  <div key={s.n} className="relative p-4 rounded-sm border transition-all hover:shadow-lg hover:-translate-y-2" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
+                    <span className="text-4xl font-bold tabular-nums leading-none absolute top-2 right-4 opacity-10" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>{s.n}</span>
+                    <h3 className="text-base font-bold mb-2 relative z-10" style={{ color: "#111C17" }}>{s.title}</h3>
+                    <p className="text-sm leading-relaxed relative z-10" style={{ color: "#6B7C72" }}>{s.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </ScrollEffect>
           </div>
         </div>
       </section>
