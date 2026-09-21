@@ -200,7 +200,7 @@ export default function Home() {
           </div>
 
           {/* Desktop: image left, cards right */}
-          <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-start">
+          <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-stretch">
             <ScrollEffect direction="left">
               <div className="relative h-full min-h-[400px] rounded-sm overflow-hidden" style={{ background: "#D8E8DC" }}>
                 <img 
@@ -211,7 +211,7 @@ export default function Home() {
               </div>
             </ScrollEffect>
             <ScrollEffect direction="right">
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-6 h-full">
                 {[
                   { n: "01", title: "Décrivez", desc: "Envoyez-nous des photos et les détails des dégâts via le formulaire." },
                   { n: "02", title: "Devis", desc: "Réception d'une estimation chiffrée et du délai d'intervention sous 48h." },
