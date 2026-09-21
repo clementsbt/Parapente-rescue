@@ -159,24 +159,26 @@ export default function Home() {
             </div>
           </ScrollEffect>
           <ScrollEffect direction="right" delay={0.2}>
-            <div className="grid grid-rows-2 gap-4 h-[540px]">
+            <div className="grid grid-cols-2 gap-4 h-[400px] md:h-[540px]">
               <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
-              <div className="grid grid-cols-2 gap-4">
-                <img src={IMG.sewing2} alt="Réparation tissu parapente" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
-                <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+              <img src={IMG.sewing2} alt="Réparation tissu parapente" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+              <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+              <div className="rounded-sm flex items-center justify-center" style={{ background: "#D8E8DC" }}>
+                <span className="text-sm font-semibold" style={{ color: FOREST }}>+ d'interventions</span>
               </div>
             </div>
           </ScrollEffect>
         </div>
 
-        {/* Desktop: images left, text right */}
-        <div className="hidden lg:grid grid-cols-2 gap-12 items-start">
+        {/* Desktop: images left (2x2 grid), text right */}
+        <div className="hidden lg:grid grid-cols-2 gap-6 items-stretch">
           <ScrollEffect direction="left">
-            <div className="grid grid-rows-2 gap-4 h-full min-h-[540px]">
+            <div className="grid grid-cols-2 gap-4 h-full">
               <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
-              <div className="grid grid-cols-2 gap-4">
-                <img src={IMG.sewing2} alt="Réparation tissu parapente" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
-                <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+              <img src={IMG.sewing2} alt="Réparation tissu parapente" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+              <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+              <div className="rounded-sm flex items-center justify-center" style={{ background: "#D8E8DC" }}>
+                <span className="text-sm font-semibold" style={{ color: FOREST }}>+ d'interventions</span>
               </div>
             </div>
           </ScrollEffect>
