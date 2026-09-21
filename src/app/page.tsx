@@ -218,7 +218,7 @@ export default function Home() {
                   { n: "03", title: "Déposez", desc: "Déposez votre matériel à l'atelier ou expédiez-le par transporteur." },
                   { n: "04", title: "Récupérez", desc: "Votre aile est prête à voler. Retrait sur place ou renvoi sécurisé." },
                 ].map((s, i) => (
-                  <div key={s.n} className="relative p-4 rounded-sm border transition-all hover:shadow-lg hover:-translate-y-2" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
+                  <div key={s.n} className="relative p-4 rounded-sm border transition-all hover:shadow-lg hover:-translate-y-2 flex flex-col items-center justify-center text-center" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
                     <span className="text-4xl font-bold tabular-nums leading-none absolute top-2 right-4 opacity-10" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>{s.n}</span>
                     <h3 className="text-base font-bold mb-2 relative z-10" style={{ color: "#111C17" }}>{s.title}</h3>
                     <p className="text-sm leading-relaxed relative z-10" style={{ color: "#6B7C72" }}>{s.desc}</p>
