@@ -131,7 +131,8 @@ export default function Home() {
 
       {/* Services */}
       <section className="py-12 md:py-24 px-4 md:px-14 max-w-6xl mx-auto border-t" style={{ borderColor: "#D8E8DC" }}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        {/* Mobile: stacked (text then images) */}
+        <div className="lg:hidden">
           <ScrollEffect>
             <Tag>Notre savoir-faire</Tag>
             <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
@@ -140,7 +141,7 @@ export default function Home() {
             <p className="text-sm leading-relaxed mb-8" style={{ color: "#6B7C72" }}>
               Chaque intervention respecte minutieusement le cahier des charges constructeur.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-4 mb-8">
               {[
                 { icon: "🔧", title: "Accrocs & Déchirures", desc: "Réparation par patch collé double face ou couture bord à bord." },
                 { icon: "📐", title: "Remplacement Panneaux", desc: "Découture et remplacement complet de profils intra ou extrados." },
@@ -164,6 +165,44 @@ export default function Home() {
                 <img src={IMG.sewing2} alt="Réparation tissu parapente" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
                 <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
               </div>
+            </div>
+          </ScrollEffect>
+        </div>
+
+        {/* Desktop: images left, text right */}
+        <div className="hidden lg:grid grid-cols-2 gap-12 items-start">
+          <ScrollEffect direction="left">
+            <div className="grid grid-rows-2 gap-4 h-full min-h-[540px]">
+              <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+              <div className="grid grid-cols-2 gap-4">
+                <img src={IMG.sewing2} alt="Réparation tissu parapente" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+                <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+              </div>
+            </div>
+          </ScrollEffect>
+          <ScrollEffect direction="right">
+            <Tag>Notre savoir-faire</Tag>
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
+              Des soins sur-mesure pour votre parapente
+            </h2>
+            <p className="text-sm leading-relaxed mb-8" style={{ color: "#6B7C72" }}>
+              Chaque intervention respecte minutieusement le cahier des charges constructeur.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-4">
+              {[
+                { icon: "🔧", title: "Accrocs & Déchirures", desc: "Réparation par patch collé double face ou couture bord à bord." },
+                { icon: "📐", title: "Remplacement Panneaux", desc: "Découture et remplacement complet de profils intra ou extrados." },
+                { icon: "🪡", title: "Bord d'attaque", desc: "Restauration des joncs Mylar et coutures de tension." },
+                { icon: "⚙️", title: "Suspentes", desc: "Remplacement à l'identique de suspentes rompues." },
+              ].map((c, i) => (
+                <ScrollEffect key={c.title} delay={i * 0.1}>
+                  <div className="p-3 md:p-6 rounded-sm border transition-all hover:shadow-lg hover:scale-105" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
+                    <div className="text-xl md:text-2xl mb-2 md:mb-3">{c.icon}</div>
+                    <h3 className="font-semibold text-sm md:text-base mb-1 md:mb-2" style={{ color: "#111C17" }}>{c.title}</h3>
+                    <p className="text-xs md:text-sm leading-relaxed" style={{ color: "#6B7C72" }}>{c.desc}</p>
+                  </div>
+                </ScrollEffect>
+              ))}
             </div>
           </ScrollEffect>
         </div>
