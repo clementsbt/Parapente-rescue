@@ -239,17 +239,8 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Desktop: image left, cards right */}
+          {/* Desktop: cards left, image right */}
           <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-stretch">
-            <ScrollEffect direction="left">
-              <div className="relative h-full min-h-[400px] rounded-sm overflow-hidden" style={{ background: "#D8E8DC" }}>
-                <img 
-                  src="/images/Falcon.jpg.webp" 
-                  alt="FalconLW réparée" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </ScrollEffect>
             <ScrollEffect direction="right">
               <div className="grid grid-cols-2 gap-6 h-full">
                 {[
@@ -264,6 +255,15 @@ export default function Home() {
                     <p className="text-sm leading-relaxed relative z-10" style={{ color: "#6B7C72" }}>{s.desc}</p>
                   </div>
                 ))}
+              </div>
+            </ScrollEffect>
+            <ScrollEffect direction="left">
+              <div className="relative h-full min-h-[400px] rounded-sm overflow-hidden" style={{ background: "#D8E8DC" }}>
+                <img 
+                  src="/images/Falcon.jpg.webp" 
+                  alt="FalconLW réparée" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </ScrollEffect>
           </div>
