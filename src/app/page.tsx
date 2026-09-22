@@ -2,9 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import GoogleReviews from "@/components/GoogleReviews";
 import ScrollEffect from "@/components/ScrollEffect";
+import { COLORS, FONTS } from "@/theme";
 
-const FOREST = "#1A3829";
-const FOREST_DEEP = "#0F2218";
+const { forest: FOREST, forestDeep: FOREST_DEEP, lightGreen, textDark, textMuted } = COLORS;
 
 const IMG = {
   hero: "/images/atelier/Reparation-parapente-chambery-Grenoble--2048x1360.jpeg.webp",
