@@ -13,8 +13,8 @@ export default function Logo() {
           className="object-contain rounded-[6px]"
         />
       </div>
-      <span className="text-[15px] whitespace-nowrap font-bold" style={{ color: "COLORS.textLightest" }}>
-        PARAPENTE <span style={{ color: "COLORS.accent" }}>RESCUE</span>
+      <span className="text-[15px] whitespace-nowrap font-bold" style={{ color: COLORS.textLightest }}>
+        PARAPENTE RESCUE
       </span>
     </Link>
   );
