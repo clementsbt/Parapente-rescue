@@ -1,10 +1,12 @@
 import Link from "next/link";
 
-const FOREST = "#1A3829";
+import { COLORS } from "@/theme";
+
+const FOREST = COLORS.forest;
 
 function Tag({ children }: { children: string }) {
   return (
-    <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "#D8E8DC", color: FOREST }}>
+    <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "COLORS.lightGreen", color: FOREST }}>
       {children}
     </span>
   );
@@ -39,8 +41,8 @@ export default function Processus() {
                 <div key={step.n} className="flex gap-6">
                   <span className="text-4xl font-bold tabular-nums flex-shrink-0 leading-none" style={{ fontFamily: "var(--font-fraunces), serif", color: "#EBF3ED" }}>{step.n}</span>
                   <div className="-mt-1">
-                    <h3 className="text-base font-semibold mb-1" style={{ color: "#111C17" }}>{step.title}</h3>
-                    <p className="text-sm leading-relaxed" style={{ color: "#6B7C72" }}>{step.desc}</p>
+                    <h3 className="text-base font-semibold mb-1" style={{ color: "COLORS.textDark" }}>{step.title}</h3>
+                    <p className="text-sm leading-relaxed" style={{ color: "COLORS.textMuted" }}>{step.desc}</p>
                   </div>
                 </div>
               ))}
@@ -56,13 +58,13 @@ export default function Processus() {
                   "Incluez la fiche de renseignement dûment remplie dans le colis.",
                   "Utilisez un carton rigide et protégez la voile avec du papier bulle ou journal.",
                 ].map((c) => (
-                  <li key={c} className="flex gap-3 text-sm leading-relaxed" style={{ color: "#3D4D43" }}>
+                  <li key={c} className="flex gap-3 text-sm leading-relaxed" style={{ color: "COLORS.textLight" }}>
                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: FOREST }} />{c}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="rounded-sm p-8 border" style={{ borderColor: "#D8E8DC" }}>
+            <div className="rounded-sm p-8 border" style={{ borderColor: "COLORS.lightGreen" }}>
               <h2 className="text-lg font-bold mb-5" style={{ fontFamily: "var(--font-fraunces), serif" }}>L'Atelier</h2>
               <div className="space-y-4">
                 {[
@@ -72,11 +74,11 @@ export default function Processus() {
                 ].map((item) => (
                   <div key={item.label}>
                     <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "#B5CAB8" }}>{item.label}</p>
-                    <p className="text-sm whitespace-pre-line" style={{ color: "#3D4D43" }}>{item.val}</p>
+                    <p className="text-sm whitespace-pre-line" style={{ color: "COLORS.textLight" }}>{item.val}</p>
                   </div>
                 ))}
               </div>
-              <Link href="/contact" className="mt-6 text-sm font-semibold px-5 py-2.5 rounded-sm block text-center" style={{ background: FOREST, color: "#F6F8F5" }}>
+              <Link href="/contact" className="mt-6 text-sm font-semibold px-5 py-2.5 rounded-sm block text-center" style={{ background: FOREST, color: "COLORS.bgLight" }}>
                 Demander notre guide PDF
               </Link>
             </div>
@@ -84,7 +86,7 @@ export default function Processus() {
         </div>
       </section>
 
-      <div className="h-72 mx-6 md:mx-14 mb-0 rounded-sm overflow-hidden" style={{ background: "#D8E8DC" }}>
+      <div className="h-72 mx-6 md:mx-14 mb-0 rounded-sm overflow-hidden" style={{ background: "COLORS.lightGreen" }}>
         <img src="https://images.unsplash.com/photo-1739117441029-9f2a8e59e8b2?w=800&h=600&fit=crop&auto=format" alt="Atelier de réparation" className="w-full h-full object-cover" />
       </div>
     </>

@@ -1,8 +1,10 @@
-const FOREST = "#1A3829";
+import { COLORS } from "@/theme";
+
+const FOREST = COLORS.forest;
 
 function Tag({ children }: { children: string }) {
   return (
-    <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "#D8E8DC", color: FOREST }}>
+    <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "COLORS.lightGreen", color: FOREST }}>
       {children}
     </span>
   );
@@ -26,14 +28,14 @@ export default function APropos() {
       <section className="py-20 px-8 md:px-14 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="text-base leading-loose mb-6" style={{ color: "#3D4D43" }}>
+            <p className="text-base leading-loose mb-6" style={{ color: "COLORS.textLight" }}>
               Chaque point de couture, chaque suspente est vérifiée avec des instruments de mesure calibrés. Notre tolérance à l'erreur est de zéro, car votre sécurité dépend de notre rigueur.
             </p>
-            <p className="text-base leading-loose" style={{ color: "#3D4D43" }}>
+            <p className="text-base leading-loose" style={{ color: "COLORS.textLight" }}>
               Nous sommes avant tout des pilotes. Nous comprenons l'importance d'une aile réactive et fiable. Notre mission est de vous remettre en l'air dans les meilleures conditions.
             </p>
           </div>
-          <div className="h-80 rounded-sm overflow-hidden" style={{ background: "#D8E8DC" }}>
+          <div className="h-80 rounded-sm overflow-hidden" style={{ background: "COLORS.lightGreen" }}>
             <img src="https://images.unsplash.com/photo-1623578059518-bbdb071eab81?w=800&h=600&fit=crop&auto=format" alt="Technicien à l'atelier" className="w-full h-full object-cover" />
           </div>
         </div>
@@ -44,10 +46,10 @@ export default function APropos() {
             { label: "Transparence Totale", text: "Un rapport d'intervention détaillé accompagne chaque voile réparée. Vous connaissez exactement l'état de votre équipement.", icon: "📋" },
             { label: "Passion du Vol", text: "Nous sommes avant tout des pilotes. Nous comprenons l'importance d'une aile réactive et fiable dans les airs.", icon: "🪂" },
           ].map((p) => (
-            <div key={p.label} className="p-8 rounded-sm border" style={{ borderColor: "#D8E8DC" }}>
+            <div key={p.label} className="p-8 rounded-sm border" style={{ borderColor: "COLORS.lightGreen" }}>
               <span className="text-3xl mb-4 block">{p.icon}</span>
-              <h3 className="font-semibold mb-3 text-base" style={{ color: "#111C17" }}>{p.label}</h3>
-              <p className="text-sm leading-relaxed" style={{ color: "#6B7C72" }}>{p.text}</p>
+              <h3 className="font-semibold mb-3 text-base" style={{ color: "COLORS.textDark" }}>{p.label}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: "COLORS.textMuted" }}>{p.text}</p>
             </div>
           ))}
         </div>
@@ -55,7 +57,7 @@ export default function APropos() {
 
       <section className="py-12 px-8 md:px-14 max-w-6xl mx-auto">
         <Tag>Coulisses</Tag>
-        <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ fontFamily: "var(--font-fraunces), serif", color: "#111C17" }}>
+        <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ fontFamily: "var(--font-fraunces), serif", color: "COLORS.textDark" }}>
           Au cœur de l'atelier
         </h2>
         <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -67,7 +69,7 @@ export default function APropos() {
             "https://images.unsplash.com/photo-1623578059518-bbdb071eab81?w=800&h=600&fit=crop&auto=format",
             "https://images.unsplash.com/photo-1674558281713-413dbaccb8f8?w=800&h=600&fit=crop&auto=format",
           ].map((src, i) => (
-            <div key={i} className="aspect-square rounded-sm overflow-hidden" style={{ background: "#D8E8DC" }}>
+            <div key={i} className="aspect-square rounded-sm overflow-hidden" style={{ background: "COLORS.lightGreen" }}>
               <img src={src} alt={`Atelier ${i + 1}`} className="w-full h-full object-cover" />
             </div>
           ))}

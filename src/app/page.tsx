@@ -15,7 +15,7 @@ const IMG = {
 
 function Tag({ children }: { children: string }) {
   return (
-    <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "#D8E8DC", color: FOREST }}>
+    <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "COLORS.lightGreen", color: FOREST }}>
       {children}
     </span>
   );
@@ -39,7 +39,7 @@ export default function Home() {
           <div className="absolute inset-0 flex flex-col justify-center px-[20px] text-white">
             <h1 className="text-[32px] leading-[1.15] mb-4" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 400 }}>
               Réparer votre voile.<br />
-              <span style={{ color: "#82a390" }}>Retrouver le ciel.</span>
+              <span style={{ color: "COLORS.accent" }}>Retrouver le ciel.</span>
             </h1>
             <p className="text-[14px] opacity-90 mb-6 max-w-xs">
               Atelier spécialisé dans la réparation de voiles de parapente.
@@ -64,15 +64,15 @@ export default function Home() {
         </div>
 
         {/* Stats */}
-        <div className="h-1/5 flex items-center justify-around px-5 w-full" style={{ background: "#e1ece5" }}>
+        <div className="h-1/5 flex items-center justify-around px-5 w-full" style={{ background: "COLORS.borderLight" }}>
           {[
             { val: "12+", label: "Années" },
             { val: "100%", label: "Satisfaction" },
             { val: "48h", label: "Diagnostic" },
           ].map((s) => (
             <div key={s.val} className="flex flex-col items-center">
-              <p className="text-[28px]" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 400, color: "#1c3328" }}>{s.val}</p>
-              <p className="text-[10px]" style={{ color: "#2f3e36" }}>{s.label}</p>
+              <p className="text-[28px]" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 400, color: "COLORS.textLightest" }}>{s.val}</p>
+              <p className="text-[10px]" style={{ color: "COLORS.textLighter" }}>{s.label}</p>
             </div>
           ))}
         </div>
@@ -80,12 +80,12 @@ export default function Home() {
 
       {/* Desktop Hero */}
       <section className="hidden lg:grid pt-16 min-h-screen grid-cols-2">
-        <div className="flex flex-col justify-center px-14 py-0" style={{ background: "#F6F8F5" }}>
-            <h1 className="text-6xl xl:text-7xl font-bold leading-[1.05] mb-6" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
+        <div className="flex flex-col justify-center px-14 py-0" style={{ background: "COLORS.bgLight" }}>
+            <h1 className="text-6xl xl:text-7xl font-bold leading-[1.05] mb-6" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "COLORS.textDark" }}>
               Réparer votre voile.<br />
               <em className="not-italic" style={{ color: FOREST }}>Retrouver le ciel.</em>
             </h1>
-            <p className="text-lg leading-relaxed mb-8 max-w-md" style={{ color: "#3D4D43" }}>
+            <p className="text-lg leading-relaxed mb-8 max-w-md" style={{ color: "COLORS.textLight" }}>
               Atelier spécialisé dans la réparation de voiles de parapente. Accrocs, tissu, coutures, suspentes : une solution adaptée et certifiée pour votre équipement.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -104,7 +104,7 @@ export default function Home() {
                 Voir nos tarifs <span className="inline">↗</span>
               </Link>
             </div>
-            <div className="mt-16 grid grid-cols-3 gap-6 pt-10 border-t" style={{ borderColor: "#D8E8DC" }}>
+            <div className="mt-16 grid grid-cols-3 gap-6 pt-10 border-t" style={{ borderColor: "COLORS.lightGreen" }}>
               {[
                 { val: "12+", label: "Années d'expérience" },
                 { val: "100%", label: "Taux de satisfaction" },
@@ -112,12 +112,12 @@ export default function Home() {
               ].map((s) => (
                 <div key={s.val}>
                   <p className="text-3xl font-bold" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: FOREST }}>{s.val}</p>
-                  <p className="text-xs mt-1 leading-snug" style={{ color: "#6B7C72" }}>{s.label}</p>
+                  <p className="text-xs mt-1 leading-snug" style={{ color: "COLORS.textMuted" }}>{s.label}</p>
                 </div>
               ))}
             </div>
         </div>
-        <div className="relative min-h-[600px]" style={{ background: "#D8E8DC" }}>
+        <div className="relative min-h-[600px]" style={{ background: "COLORS.lightGreen" }}>
           <Image 
             src={IMG.hero} 
             alt="Parapente dans les Alpes" 
@@ -130,15 +130,15 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section className="py-12 md:py-24 px-4 md:px-14 max-w-6xl mx-auto border-t" style={{ borderColor: "#D8E8DC" }}>
+      <section className="py-12 md:py-24 px-4 md:px-14 max-w-6xl mx-auto border-t" style={{ borderColor: "COLORS.lightGreen" }}>
         {/* Mobile: stacked (text then images) */}
         <div className="lg:hidden">
           <ScrollEffect>
             <Tag>Notre savoir-faire</Tag>
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "COLORS.textDark" }}>
               Des soins sur-mesure pour votre parapente
             </h2>
-            <p className="text-sm leading-relaxed mb-8" style={{ color: "#6B7C72" }}>
+            <p className="text-sm leading-relaxed mb-8" style={{ color: "COLORS.textMuted" }}>
               Chaque intervention respecte minutieusement le cahier des charges constructeur.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-4 mb-8">
@@ -149,10 +149,10 @@ export default function Home() {
                 { icon: "⚙️", title: "Suspentes", desc: "Remplacement à l'identique de suspentes rompues." },
               ].map((c, i) => (
                 <ScrollEffect key={c.title} delay={i * 0.1}>
-                  <div className="p-3 md:p-6 rounded-sm border transition-all hover:shadow-lg hover:scale-105" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
+                  <div className="p-3 md:p-6 rounded-sm border transition-all hover:shadow-lg hover:scale-105" style={{ borderColor: "COLORS.lightGreen", background: "#fff" }}>
                     <div className="text-xl md:text-2xl mb-2 md:mb-3">{c.icon}</div>
-                    <h3 className="font-semibold text-sm md:text-base mb-1 md:mb-2" style={{ color: "#111C17" }}>{c.title}</h3>
-                    <p className="text-xs md:text-sm leading-relaxed" style={{ color: "#6B7C72" }}>{c.desc}</p>
+                    <h3 className="font-semibold text-sm md:text-base mb-1 md:mb-2" style={{ color: "COLORS.textDark" }}>{c.title}</h3>
+                    <p className="text-xs md:text-sm leading-relaxed" style={{ color: "COLORS.textMuted" }}>{c.desc}</p>
                   </div>
                 </ScrollEffect>
               ))}
@@ -160,9 +160,9 @@ export default function Home() {
           </ScrollEffect>
           <ScrollEffect direction="right" delay={0.2}>
             <div className="grid grid-rows-3 gap-2 sm:gap-4 h-[300px] sm:h-[400px] md:h-[540px]">
-              <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
-              <img src={IMG.sewing2} alt="Réparation tissu parapente" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
-              <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+              <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "COLORS.lightGreen" }} />
+              <img src={IMG.sewing2} alt="Réparation tissu parapente" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "COLORS.lightGreen" }} />
+              <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "COLORS.lightGreen" }} />
             </div>
           </ScrollEffect>
         </div>
@@ -171,20 +171,20 @@ export default function Home() {
         <div className="hidden lg:grid grid-cols-2 gap-6">
           <ScrollEffect direction="left">
             <div className="grid grid-rows-[35%_1fr] gap-4" style={{ height: "90vh" }}>
-              <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+              <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "COLORS.lightGreen" }} />
               <div className="grid grid-cols-2 gap-4 h-full">
-                <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
-                <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+                <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "COLORS.lightGreen" }} />
+                <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "COLORS.lightGreen" }} />
               </div>
             </div>
           </ScrollEffect>
           <ScrollEffect direction="right">
             <div className="flex flex-col h-full">
             <Tag>Notre savoir-faire</Tag>
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "COLORS.textDark" }}>
               Des soins sur-mesure pour votre parapente
             </h2>
-            <p className="text-sm leading-relaxed mb-8" style={{ color: "#6B7C72" }}>
+            <p className="text-sm leading-relaxed mb-8" style={{ color: "COLORS.textMuted" }}>
               Chaque intervention respecte minutieusement le cahier des charges constructeur.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-4">
@@ -195,10 +195,10 @@ export default function Home() {
                 { icon: "⚙️", title: "Suspentes", desc: "Remplacement à l'identique de suspentes rompues." },
               ].map((c, i) => (
                 <ScrollEffect key={c.title} delay={i * 0.1}>
-                  <div className="p-3 md:p-6 rounded-sm border transition-all hover:shadow-lg hover:scale-105" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
+                  <div className="p-3 md:p-6 rounded-sm border transition-all hover:shadow-lg hover:scale-105" style={{ borderColor: "COLORS.lightGreen", background: "#fff" }}>
                     <div className="text-xl md:text-2xl mb-2 md:mb-3">{c.icon}</div>
-                    <h3 className="font-semibold text-sm md:text-base mb-1 md:mb-2" style={{ color: "#111C17" }}>{c.title}</h3>
-                    <p className="text-xs md:text-sm leading-relaxed" style={{ color: "#6B7C72" }}>{c.desc}</p>
+                    <h3 className="font-semibold text-sm md:text-base mb-1 md:mb-2" style={{ color: "COLORS.textDark" }}>{c.title}</h3>
+                    <p className="text-xs md:text-sm leading-relaxed" style={{ color: "COLORS.textMuted" }}>{c.desc}</p>
                   </div>
                 </ScrollEffect>
               ))}
@@ -209,12 +209,12 @@ export default function Home() {
       </section>
 
       {/* Process */}
-      <section className="py-12 md:py-16 px-4 md:px-14 border-t" style={{ borderColor: "#D8E8DC" }}>
+      <section className="py-12 md:py-16 px-4 md:px-14 border-t" style={{ borderColor: "COLORS.lightGreen" }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8 md:mb-16">
             <ScrollEffect>
               <Tag>Méthodologie</Tag>
-              <h2 className="text-3xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
+              <h2 className="text-3xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "COLORS.textDark" }}>
                 Comment nous sauvons votre voile
               </h2>
             </ScrollEffect>
@@ -230,15 +230,15 @@ export default function Home() {
                 { n: "04", title: "Récupérez", desc: "Votre aile est prête à voler. Retrait sur place ou renvoi sécurisé." },
               ].map((s, i) => (
                 <ScrollEffect key={s.n} delay={i * 0.1}>
-                  <div className="relative p-3 md:p-6 rounded-sm border transition-all hover:shadow-lg hover:-translate-y-2 h-full flex flex-col justify-between" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
+                  <div className="relative p-3 md:p-6 rounded-sm border transition-all hover:shadow-lg hover:-translate-y-2 h-full flex flex-col justify-between" style={{ borderColor: "COLORS.lightGreen", background: "#fff" }}>
                     <span className="text-5xl md:text-7xl font-bold tabular-nums leading-none absolute top-1 md:top-2 right-2 md:right-4 opacity-10" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>{s.n}</span>
-                    <h3 className="text-base md:text-lg font-bold mb-1 md:mb-2 relative z-10" style={{ color: "#111C17" }}>{s.title}</h3>
-                    <p className="text-xs md:text-sm leading-tight md:leading-relaxed relative z-10" style={{ color: "#6B7C72" }}>{s.desc}</p>
+                    <h3 className="text-base md:text-lg font-bold mb-1 md:mb-2 relative z-10" style={{ color: "COLORS.textDark" }}>{s.title}</h3>
+                    <p className="text-xs md:text-sm leading-tight md:leading-relaxed relative z-10" style={{ color: "COLORS.textMuted" }}>{s.desc}</p>
                   </div>
                 </ScrollEffect>
               ))}
             </div>
-            <div className="relative h-[250px] sm:h-[300px] md:h-[350px] rounded-sm overflow-hidden" style={{ background: "#D8E8DC" }}>
+            <div className="relative h-[250px] sm:h-[300px] md:h-[350px] rounded-sm overflow-hidden" style={{ background: "COLORS.lightGreen" }}>
               <img 
                 src="/images/Falcon.jpg.webp" 
                 alt="FalconLW réparée" 
@@ -257,16 +257,16 @@ export default function Home() {
                   { n: "03", title: "Déposez", desc: "Déposez votre matériel à l'atelier ou expédiez-le par transporteur." },
                   { n: "04", title: "Récupérez", desc: "Votre aile est prête à voler. Retrait sur place ou renvoi sécurisé." },
                 ].map((s, i) => (
-                  <div key={s.n} className="relative p-4 rounded-sm border transition-all hover:shadow-lg hover:-translate-y-2 flex flex-col items-center justify-center text-center" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
+                  <div key={s.n} className="relative p-4 rounded-sm border transition-all hover:shadow-lg hover:-translate-y-2 flex flex-col items-center justify-center text-center" style={{ borderColor: "COLORS.lightGreen", background: "#fff" }}>
                     <span className="text-4xl font-bold tabular-nums leading-none absolute top-2 right-4 opacity-10" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>{s.n}</span>
-                    <h3 className="text-base font-bold mb-2 relative z-10" style={{ color: "#111C17" }}>{s.title}</h3>
-                    <p className="text-sm leading-relaxed relative z-10" style={{ color: "#6B7C72" }}>{s.desc}</p>
+                    <h3 className="text-base font-bold mb-2 relative z-10" style={{ color: "COLORS.textDark" }}>{s.title}</h3>
+                    <p className="text-sm leading-relaxed relative z-10" style={{ color: "COLORS.textMuted" }}>{s.desc}</p>
                   </div>
                 ))}
               </div>
             </ScrollEffect>
             <ScrollEffect direction="left">
-              <div className="relative h-full min-h-[400px] rounded-sm overflow-hidden" style={{ background: "#D8E8DC" }}>
+              <div className="relative h-full min-h-[400px] rounded-sm overflow-hidden" style={{ background: "COLORS.lightGreen" }}>
                 <img 
                   src="/images/Falcon.jpg.webp" 
                   alt="FalconLW réparée" 
@@ -279,7 +279,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-12 md:py-24 px-4 md:px-14 border-t" style={{ borderColor: "#D8E8DC" }}>
+      <section className="py-12 md:py-24 px-4 md:px-14 border-t" style={{ borderColor: "COLORS.lightGreen" }}>
         <div className="max-w-6xl mx-auto mb-12">
           <div className="flex items-center gap-3 mb-4">
             <Image 
@@ -291,7 +291,7 @@ export default function Home() {
             />
             <Tag>Avis Google</Tag>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "#111C17" }}>
+          <h2 className="text-3xl md:text-4xl font-bold leading-tight" style={{ fontFamily: "var(--font-bricolage), sans-serif", color: "COLORS.textDark" }}>
             Ils nous font confiance
           </h2>
         </div>
@@ -308,11 +308,11 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>
             Prêt à faire réparer votre matériel ?
           </h2>
-          <p className="text-sm mb-8 opacity-70 max-w-md mx-auto" style={{ color: "#D8E8DC" }}>
+          <p className="text-sm mb-8 opacity-70 max-w-md mx-auto" style={{ color: "COLORS.lightGreen" }}>
             N'attendez pas que les dégâts s'aggravent. Contactez-nous pour une évaluation professionnelle.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="text-sm font-bold px-6 py-3 rounded-[999px] transition-transform hover:scale-105 active:scale-95" style={{ background: "#F6F8F5", color: FOREST, boxShadow: "0px 4px 12px rgba(0,0,0,0.2)" }}>
+            <Link href="/contact" className="text-sm font-bold px-6 py-3 rounded-[999px] transition-transform hover:scale-105 active:scale-95" style={{ background: "COLORS.bgLight", color: FOREST, boxShadow: "0px 4px 12px rgba(0,0,0,0.2)" }}>
               Demander un devis en ligne ↗
             </Link>
             <a href="tel:+33685452244" className="text-sm font-bold px-6 py-3 rounded-[999px] border-2 transition-transform hover:scale-105 active:scale-95" style={{ borderColor: "rgba(255,255,255,0.5)", color: "#fff" }}>

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import { COLORS } from "@/theme";
 
 interface Review {
   name: string;
@@ -126,7 +127,7 @@ export default function GoogleReviews() {
           <button
             key={index}
             className="w-2 h-2 rounded-full transition-all"
-            style={{ background: (currentSlide === undefined ? index === 0 : currentSlide === index) ? "#1A3829" : "#D8E8DC" }}
+            style={{ background: (currentSlide === undefined ? index === 0 : currentSlide === index) ? "COLORS.forest" : "COLORS.lightGreen" }}
           />
         ))}
       </div>
@@ -146,12 +147,12 @@ function ReviewCard({ review, index, expanded, toggleExpand }: {
     <div className="p-4 md:p-6 rounded-xl h-full" style={{ background: "#F9F9F9" }}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold" style={{ background: "#1A3829", color: "#fff" }}>
+          <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold" style={{ background: "COLORS.forest", color: "#fff" }}>
             {review.name.charAt(0)}
           </div>
           <div>
-            <p className="font-semibold text-sm" style={{ color: "#111C17" }}>{review.name}</p>
-            <p className="text-xs" style={{ color: "#6B7C72" }}>{review.date}</p>
+            <p className="font-semibold text-sm" style={{ color: "COLORS.textDark" }}>{review.name}</p>
+            <p className="text-xs" style={{ color: "COLORS.textMuted" }}>{review.date}</p>
           </div>
         </div>
         <Image 
@@ -171,14 +172,14 @@ function ReviewCard({ review, index, expanded, toggleExpand }: {
         </div>
       </div>
 
-      <p className="text-xs leading-relaxed" style={{ color: "#3D4D43" }}>
+      <p className="text-xs leading-relaxed" style={{ color: "COLORS.textLight" }}>
         {review.text.length > 120 && !isExpanded ? (
           <>
             {review.text.slice(0, 120)}...
             <button 
               onClick={() => toggleExpand(index)}
               className="ml-1 font-medium hover:underline"
-              style={{ color: "#1A3829" }}
+              style={{ color: "COLORS.forest" }}
             >
               Lire la suite
             </button>
@@ -190,7 +191,7 @@ function ReviewCard({ review, index, expanded, toggleExpand }: {
               <button 
                 onClick={() => toggleExpand(index)}
                 className="ml-1 font-medium hover:underline"
-                style={{ color: "#1A3829" }}
+                style={{ color: "COLORS.forest" }}
               >
                 Réduire
               </button>

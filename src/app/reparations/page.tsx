@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import { COLORS } from "@/theme";
 
-const FOREST = "#1A3829";
+const FOREST = COLORS.forest;
 
 const services = [
   { title: "Accrocs & Déchirures", img: "https://images.unsplash.com/photo-1457972657980-4c9fddebec8d?w=800&h=600&fit=crop&auto=format", desc: "Intervention sur les micro déchirures et accrocs superficiels. Application de patchs autocollants techniques ou coutures selon la criticité de la zone affectée, garantissant aucune altération du profil aérodynamique.", bullets: ["Tissu Porcher Marine d'origine", "Joncs de rigidification de rechange d'usine", "Respect de la tension structurelle"] },
@@ -12,7 +13,7 @@ const services = [
 
 function Tag({ children }: { children: string }) {
   return (
-    <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "#D8E8DC", color: FOREST }}>
+    <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "COLORS.lightGreen", color: FOREST }}>
       {children}
     </span>
   );
@@ -38,17 +39,17 @@ export default function Reparations() {
           {services.map((s, i) => (
             <div key={s.title} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className={i % 2 === 1 ? "lg:order-2" : ""}>
-                <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: "var(--font-fraunces), serif", color: "#111C17" }}>{s.title}</h2>
-                <p className="text-sm leading-relaxed mb-6" style={{ color: "#3D4D43" }}>{s.desc}</p>
+                <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: "var(--font-fraunces), serif", color: "COLORS.textDark" }}>{s.title}</h2>
+                <p className="text-sm leading-relaxed mb-6" style={{ color: "COLORS.textLight" }}>{s.desc}</p>
                 <ul className="space-y-2">
                   {s.bullets.map((b) => (
-                    <li key={b} className="flex items-center gap-3 text-sm" style={{ color: "#3D4D43" }}>
+                    <li key={b} className="flex items-center gap-3 text-sm" style={{ color: "COLORS.textLight" }}>
                       <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: FOREST }} />{b}
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className={`h-72 rounded-sm overflow-hidden ${i % 2 === 1 ? "lg:order-1" : ""}`} style={{ background: "#D8E8DC" }}>
+              <div className={`h-72 rounded-sm overflow-hidden ${i % 2 === 1 ? "lg:order-1" : ""}`} style={{ background: "COLORS.lightGreen" }}>
                 <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
               </div>
             </div>
@@ -56,10 +57,10 @@ export default function Reparations() {
         </div>
       </section>
 
-      <section className="py-20 px-8 md:px-14" style={{ background: "#fff" }}>
+      <section className="py-20 px-8 md:px-14" style={{ background: "COLORS.cardBg" }}>
         <div className="max-w-6xl mx-auto">
           <Tag>Avant / Après</Tag>
-          <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ fontFamily: "var(--font-fraunces), serif", color: "#111C17" }}>
+          <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ fontFamily: "var(--font-fraunces), serif", color: "COLORS.textDark" }}>
             Découvrez la qualité de nos réparations
           </h2>
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -68,7 +69,7 @@ export default function Reparations() {
                 <div className="aspect-[4/3] rounded-sm overflow-hidden flex items-center justify-center" style={{ background: "#EBF3ED" }}>
                   <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#B5CAB8" }}>Avant</span>
                 </div>
-                <div className="aspect-[4/3] rounded-sm overflow-hidden flex items-center justify-center" style={{ background: "#D8E8DC" }}>
+                <div className="aspect-[4/3] rounded-sm overflow-hidden flex items-center justify-center" style={{ background: "COLORS.lightGreen" }}>
                   <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: FOREST }}>Après</span>
                 </div>
               </div>
@@ -78,7 +79,7 @@ export default function Reparations() {
       </section>
 
       <div className="py-16 px-8 text-center">
-        <Link href="/contact" className="text-sm font-semibold px-8 py-3 rounded-sm" style={{ background: FOREST, color: "#F6F8F5" }}>
+        <Link href="/contact" className="text-sm font-semibold px-8 py-3 rounded-sm" style={{ background: FOREST, color: "COLORS.bgLight" }}>
           Demander un devis →
         </Link>
       </div>

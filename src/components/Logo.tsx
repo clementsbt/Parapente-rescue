@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { COLORS } from "@/theme";
 
 export default function Logo() {
   return (
@@ -12,8 +13,8 @@ export default function Logo() {
           className="object-contain rounded-[6px]"
         />
       </div>
-      <span className="text-[15px] whitespace-nowrap font-bold" style={{ color: "#1c3328" }}>
-        PARAPENTE <span style={{ color: "#82a390" }}>RESCUE</span>
+      <span className="text-[15px] whitespace-nowrap font-bold" style={{ color: "COLORS.textLightest" }}>
+        PARAPENTE <span style={{ color: "COLORS.accent" }}>RESCUE</span>
       </span>
     </Link>
   );

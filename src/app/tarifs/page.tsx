@@ -1,10 +1,12 @@
 import Link from "next/link";
 
-const FOREST = "#1A3829";
+import { COLORS } from "@/theme";
+
+const FOREST = COLORS.forest;
 
 function Tag({ children }: { children: string }) {
   return (
-    <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "#D8E8DC", color: FOREST }}>
+    <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "COLORS.lightGreen", color: FOREST }}>
       {children}
     </span>
   );
@@ -33,16 +35,16 @@ export default function Tarifs() {
       <section className="py-20 px-8 md:px-14 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {cards.map((c) => (
-            <div key={c.title} className="rounded-sm border overflow-hidden" style={{ borderColor: "#D8E8DC" }}>
+            <div key={c.title} className="rounded-sm border overflow-hidden" style={{ borderColor: "COLORS.lightGreen" }}>
               <div className="px-6 py-5 flex items-center justify-between" style={{ background: FOREST }}>
                 <h3 className="font-bold text-white text-sm" style={{ fontFamily: "var(--font-fraunces), serif" }}>{c.title}</h3>
-                {c.tag && <span className="text-xs font-semibold px-2 py-1 rounded-sm ml-2 flex-shrink-0" style={{ background: "#2A5940", color: "#D8E8DC" }}>{c.tag}</span>}
+                {c.tag && <span className="text-xs font-semibold px-2 py-1 rounded-sm ml-2 flex-shrink-0" style={{ background: "#2A5940", color: "COLORS.lightGreen" }}>{c.tag}</span>}
               </div>
               <div className="p-6 space-y-3">
                 {c.items.map((item) => (
                   <div key={item.label} className="flex items-center justify-between py-2 border-b last:border-0" style={{ borderColor: "#EBF3ED" }}>
-                    <span className="text-sm" style={{ color: "#3D4D43" }}>{item.label}</span>
-                    <span className="text-sm font-semibold tabular-nums" style={{ color: item.hl ? "#D97706" : "#111C17" }}>{item.price}</span>
+                    <span className="text-sm" style={{ color: "COLORS.textLight" }}>{item.label}</span>
+                    <span className="text-sm font-semibold tabular-nums" style={{ color: item.hl ? "#D97706" : "COLORS.textDark" }}>{item.price}</span>
                   </div>
                 ))}
               </div>
@@ -55,9 +57,9 @@ export default function Tarifs() {
             { label: "Pose d'un Ripstop* sans couture", price: "15€" },
             { label: "Changement d'une suspente", price: "15€" },
           ].map((r) => (
-            <div key={r.label} className="p-5 rounded-sm border flex items-center justify-between" style={{ borderColor: "#D8E8DC" }}>
-              <span className="text-sm" style={{ color: "#3D4D43" }}>{r.label}</span>
-              <span className="text-sm font-semibold" style={{ color: "#111C17" }}>{r.price}</span>
+            <div key={r.label} className="p-5 rounded-sm border flex items-center justify-between" style={{ borderColor: "COLORS.lightGreen" }}>
+              <span className="text-sm" style={{ color: "COLORS.textLight" }}>{r.label}</span>
+              <span className="text-sm font-semibold" style={{ color: "COLORS.textDark" }}>{r.price}</span>
             </div>
           ))}
         </div>
@@ -73,8 +75,8 @@ export default function Tarifs() {
               <p className="text-sm leading-relaxed" style={{ color: "#B5CAB8" }}>N'hésitez pas à me contacter afin d'établir une estimation précise ou un devis détaillé pour votre équipement.</p>
             </div>
             <div className="flex flex-wrap gap-4">
-              <Link href="/contact" className="text-sm font-semibold px-6 py-3 rounded-sm" style={{ background: "#F6F8F5", color: FOREST }}>Contacter l'atelier →</Link>
-              <a href="tel:+33685452244" className="text-sm font-semibold px-6 py-3 rounded-sm border" style={{ borderColor: "rgba(255,255,255,0.3)", color: "#fff" }}>+33 (0)6 85 45 22 44</a>
+              <Link href="/contact" className="text-sm font-semibold px-6 py-3 rounded-sm" style={{ background: "COLORS.bgLight", color: FOREST }}>Contacter l'atelier →</Link>
+              <a href="tel:+33685452244" className="text-sm font-semibold px-6 py-3 rounded-sm border" style={{ borderColor: "rgba(255,255,255,0.3)", color: "COLORS.cardBg" }}>+33 (0)6 85 45 22 44</a>
             </div>
           </div>
         </div>

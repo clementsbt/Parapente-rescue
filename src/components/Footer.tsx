@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
+import { COLORS } from "@/theme";
 
-const FOREST = "#1A3829";
-const FOREST_DEEP = "#0F2218";
+const { forest: FOREST, forestDeep: FOREST_DEEP, lightGreen } = COLORS;
 
 export default function Footer() {
   return (
-    <footer className="mt-24 py-16 px-6 md:px-10" style={{ background: FOREST_DEEP, color: "#D8E8DC" }}>
+    <footer className="mt-24 py-16 px-6 md:px-10" style={{ background: FOREST_DEEP, color: "COLORS.lightGreen" }}>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
         <div className="md:col-span-2">
           <Link href="/" className="flex items-center gap-2 mb-4">

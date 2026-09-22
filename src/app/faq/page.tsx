@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { COLORS } from "@/theme";
 
-const FOREST = "#1A3829";
+const FOREST = COLORS.forest;
 
 const FAQ_DATA = [
   { q: "Quels types de dommages réparez-vous ?", a: "Nous réparons l'ensemble des dommages sur voiles et intrados/extrados : des petits accrocs de suspente basse ou ripstop d'origine, jusqu'au remplacement intégral d'un caisson éclaté ou d'une cloison interne après impact." },
@@ -17,7 +18,7 @@ const FAQ_DATA = [
 
 function Tag({ children }: { children: string }) {
   return (
-    <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "#D8E8DC", color: FOREST }}>
+    <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "COLORS.lightGreen", color: FOREST }}>
       {children}
     </span>
   );
@@ -26,12 +27,12 @@ function Tag({ children }: { children: string }) {
 function FaqAccordion({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b" style={{ borderColor: "#D8E8DC" }}>
+    <div className="border-b" style={{ borderColor: "COLORS.lightGreen" }}>
       <button className="w-full flex items-center justify-between py-5 text-left" onClick={() => setOpen(!open)}>
-        <span className="text-sm font-semibold pr-8" style={{ color: "#111C17" }}>{q}</span>
+        <span className="text-sm font-semibold pr-8" style={{ color: "COLORS.textDark" }}>{q}</span>
         <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full text-xs font-bold transition-transform" style={{ background: "#EBF3ED", color: FOREST, transform: open ? "rotate(45deg)" : "" }}>+</span>
       </button>
-      {open && <p className="pb-5 text-sm leading-relaxed" style={{ color: "#6B7C72" }}>{a}</p>}
+      {open && <p className="pb-5 text-sm leading-relaxed" style={{ color: "COLORS.textMuted" }}>{a}</p>}
     </div>
   );
 }
@@ -49,8 +50,8 @@ export default function FAQ() {
         {FAQ_DATA.map((item) => <FaqAccordion key={item.q} q={item.q} a={item.a} />)}
         <div className="mt-16 p-10 rounded-sm text-center" style={{ background: "#EBF3ED" }}>
           <h2 className="text-xl font-bold mb-3" style={{ fontFamily: "var(--font-fraunces), serif" }}>Vous ne trouvez pas votre réponse ?</h2>
-          <p className="text-sm mb-6" style={{ color: "#6B7C72" }}>Notre équipe d'artisans voiliers est à votre disposition pour répondre à toutes vos interrogations techniques spécifiques.</p>
-          <Link href="/contact" className="text-sm font-semibold px-6 py-3 rounded-sm inline-block" style={{ background: FOREST, color: "#F6F8F5" }}>
+          <p className="text-sm mb-6" style={{ color: "COLORS.textMuted" }}>Notre équipe d'artisans voiliers est à votre disposition pour répondre à toutes vos interrogations techniques spécifiques.</p>
+          <Link href="/contact" className="text-sm font-semibold px-6 py-3 rounded-sm inline-block" style={{ background: FOREST, color: "COLORS.bgLight" }}>
             Nous contacter directement →
           </Link>
         </div>

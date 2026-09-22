@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
+import { COLORS } from "@/theme";
 
-const FOREST = "#1A3829";
-const FOREST_DEEP = "#0F2218";
+const { forest: FOREST, forestDeep: FOREST_DEEP } = COLORS;
 
 type Page = "accueil" | "reparations" | "processus" | "apropos" | "faq" | "contact" | "tarifs";
 
@@ -45,7 +45,7 @@ export default function Header() {
               href={l.href}
               className="text-sm font-medium transition-colors"
               style={{
-                color: current === l.page ? FOREST : "#3D4D43",
+                color: current === l.page ? FOREST : "COLORS.textLight",
                 borderBottom: current === l.page ? `2px solid ${FOREST}` : "2px solid transparent",
                 paddingBottom: "2px",
               }}
@@ -59,7 +59,7 @@ export default function Header() {
           <Link
             href="/contact"
             className="hidden sm:block text-sm font-semibold px-4 py-2 rounded-sm transition-all"
-            style={{ background: FOREST, color: "#F6F8F5" }}
+            style={{ background: FOREST, color: "COLORS.bgLight" }}
           >
             Demander un devis
           </Link>
@@ -84,7 +84,7 @@ export default function Header() {
                 href={l.href}
                 onClick={() => setOpen(false)}
                 className="text-left text-2xl font-medium py-3 border-b transition-colors"
-                style={{ borderColor: "#D8E8DC", color: current === l.page ? FOREST : "#111C17" }}
+                style={{ borderColor: "COLORS.lightGreen", color: current === l.page ? FOREST : "COLORS.textDark" }}
               >
                 {l.label}
               </Link>
@@ -93,14 +93,14 @@ export default function Header() {
               href="/contact"
               onClick={() => setOpen(false)}
               className="mt-6 text-left text-2xl font-medium py-3 border-b"
-              style={{ borderColor: "#D8E8DC", color: current === "contact" ? FOREST : "#111C17" }}
+              style={{ borderColor: "COLORS.lightGreen", color: current === "contact" ? FOREST : "COLORS.textDark" }}
             >
               Contact & Devis
             </Link>
           </nav>
-          <div className="mt-auto p-8 border-t" style={{ borderColor: "#D8E8DC" }}>
-            <a href="tel:+33685452244" className="block text-sm" style={{ color: "#3D4D43" }}>+33 (0)6 85 45 22 44</a>
-            <a href="mailto:atelier@parapenterescue.fr" className="block text-sm mt-1" style={{ color: "#3D4D43" }}>atelier@parapenterescue.fr</a>
+          <div className="mt-auto p-8 border-t" style={{ borderColor: "COLORS.lightGreen" }}>
+            <a href="tel:+33685452244" className="block text-sm" style={{ color: "COLORS.textLight" }}>+33 (0)6 85 45 22 44</a>
+            <a href="mailto:atelier@parapenterescue.fr" className="block text-sm mt-1" style={{ color: "COLORS.textLight" }}>atelier@parapenterescue.fr</a>
           </div>
         </div>
       )}

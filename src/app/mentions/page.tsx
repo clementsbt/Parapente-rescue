@@ -1,8 +1,10 @@
-const FOREST = "#1A3829";
+import { COLORS } from "@/theme";
+
+const FOREST = COLORS.forest;
 
 function Tag({ children }: { children: string }) {
   return (
-    <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "#D8E8DC", color: FOREST }}>
+    <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "COLORS.lightGreen", color: FOREST }}>
       {children}
     </span>
   );
@@ -33,8 +35,8 @@ export default function Mentions() {
         <div className="space-y-12">
           {sections.map((s) => (
             <div key={s.title}>
-              <h2 className="text-xl font-bold mb-4" style={{ fontFamily: "var(--font-fraunces), serif", color: "#111C17" }}>{s.title}</h2>
-              <p className="text-sm leading-loose whitespace-pre-line" style={{ color: "#3D4D43" }}>{s.content}</p>
+              <h2 className="text-xl font-bold mb-4" style={{ fontFamily: "var(--font-fraunces), serif", color: "COLORS.textDark" }}>{s.title}</h2>
+              <p className="text-sm leading-loose whitespace-pre-line" style={{ color: "COLORS.textLight" }}>{s.content}</p>
             </div>
           ))}
         </div>

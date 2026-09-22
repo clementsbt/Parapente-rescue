@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { COLORS } from "@/theme";
 
-const FOREST = "#1A3829";
+const FOREST = COLORS.forest;
 
 export default function Contact() {
   const [logistics, setLogistics] = useState<"expedition" | "depot">("expedition");
@@ -50,7 +51,7 @@ export default function Contact() {
           <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl" style={{ background: "#EBF3ED" }}>✓</div>
           <h2 className="text-2xl font-bold mb-3" style={{ fontFamily: "var(--font-fraunces), serif" }}>Demande envoyée !</h2>
           {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
-          <p className="text-sm" style={{ color: "#6B7C72" }}>Nous vous répondrons sous 48h ouvrées avec une estimation détaillée.</p>
+          <p className="text-sm" style={{ color: "COLORS.textMuted" }}>Nous vous répondrons sous 48h ouvrées avec une estimation détaillée.</p>
         </div>
       </div>
     );
@@ -60,7 +61,7 @@ export default function Contact() {
     <>
       <section className="pt-32 pb-16 px-8 md:px-14" style={{ background: FOREST }}>
         <div className="max-w-6xl mx-auto">
-          <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "#D8E8DC", color: FOREST }}>Formulaire & Contact</span>
+          <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-sm mb-4" style={{ background: "COLORS.lightGreen", color: FOREST }}>Formulaire & Contact</span>
           <h1 className="text-4xl md:text-5xl font-bold text-white" style={{ fontFamily: "var(--font-fraunces), serif" }}>Parlez-nous de votre voile</h1>
         </div>
       </section>
@@ -80,11 +81,11 @@ export default function Contact() {
               ))}
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "#B5CAB8" }}>Horaires d'atelier</p>
-                <p className="text-sm" style={{ color: "#3D4D43" }}>Lun – Ven : 9h00 – 18h00</p>
+                <p className="text-sm" style={{ color: "COLORS.textLight" }}>Lun – Ven : 9h00 – 18h00</p>
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "#B5CAB8" }}>Adresse</p>
-                <p className="text-sm" style={{ color: "#3D4D43" }}>Parapente Rescue<br />19 route des thermes<br />38570 Goncelin, France</p>
+                <p className="text-sm" style={{ color: "COLORS.textLight" }}>Parapente Rescue<br />19 route des thermes<br />38570 Goncelin, France</p>
               </div>
             </div>
           </div>
@@ -95,16 +96,16 @@ export default function Contact() {
                 <legend className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "#B5CAB8" }}>1 · Vos Coordonnées</legend>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="sm:col-span-2">
-                    <label className="block text-xs font-medium mb-1.5" style={{ color: "#6B7C72" }}>Nom complet</label>
-                    <input required name="fullName" placeholder="Nom Prénom" className="w-full text-sm px-4 py-3 rounded-sm border outline-none" style={{ borderColor: "#D8E8DC", background: "#fff" }} />
+                    <label className="block text-xs font-medium mb-1.5" style={{ color: "COLORS.textMuted" }}>Nom complet</label>
+                    <input required name="fullName" placeholder="Nom Prénom" className="w-full text-sm px-4 py-3 rounded-sm border outline-none" style={{ borderColor: "COLORS.lightGreen", background: "COLORS.cardBg" }} />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium mb-1.5" style={{ color: "#6B7C72" }}>Adresse email</label>
-                    <input required name="email" type="email" placeholder="exemple@exemple.com" className="w-full text-sm px-4 py-3 rounded-sm border outline-none" style={{ borderColor: "#D8E8DC", background: "#fff" }} />
+                    <label className="block text-xs font-medium mb-1.5" style={{ color: "COLORS.textMuted" }}>Adresse email</label>
+                    <input required name="email" type="email" placeholder="exemple@exemple.com" className="w-full text-sm px-4 py-3 rounded-sm border outline-none" style={{ borderColor: "COLORS.lightGreen", background: "COLORS.cardBg" }} />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium mb-1.5" style={{ color: "#6B7C72" }}>Téléphone</label>
-                    <input name="phone" type="tel" placeholder="Ex : 06 00 00 00 00" className="w-full text-sm px-4 py-3 rounded-sm border outline-none" style={{ borderColor: "#D8E8DC", background: "#fff" }} />
+                    <label className="block text-xs font-medium mb-1.5" style={{ color: "COLORS.textMuted" }}>Téléphone</label>
+                    <input name="phone" type="tel" placeholder="Ex : 06 00 00 00 00" className="w-full text-sm px-4 py-3 rounded-sm border outline-none" style={{ borderColor: "COLORS.lightGreen", background: "COLORS.cardBg" }} />
                   </div>
                 </div>
               </fieldset>
@@ -113,12 +114,12 @@ export default function Contact() {
                 <legend className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "#B5CAB8" }}>2 · Informations Voile</legend>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-medium mb-1.5" style={{ color: "#6B7C72" }}>Marque de l'aile</label>
-                    <input name="wingBrand" placeholder="Ex : Ozone, Level Wings, Niviuk..." className="w-full text-sm px-4 py-3 rounded-sm border outline-none" style={{ borderColor: "#D8E8DC", background: "#fff" }} />
+                    <label className="block text-xs font-medium mb-1.5" style={{ color: "COLORS.textMuted" }}>Marque de l'aile</label>
+                    <input name="wingBrand" placeholder="Ex : Ozone, Level Wings, Niviuk..." className="w-full text-sm px-4 py-3 rounded-sm border outline-none" style={{ borderColor: "COLORS.lightGreen", background: "COLORS.cardBg" }} />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium mb-1.5" style={{ color: "#6B7C72" }}>Modèle & Taille</label>
-                    <input name="wingModel" placeholder="Ex : HOOK 5, taille M..." className="w-full text-sm px-4 py-3 rounded-sm border outline-none" style={{ borderColor: "#D8E8DC", background: "#fff" }} />
+                    <label className="block text-xs font-medium mb-1.5" style={{ color: "COLORS.textMuted" }}>Modèle & Taille</label>
+                    <input name="wingModel" placeholder="Ex : HOOK 5, taille M..." className="w-full text-sm px-4 py-3 rounded-sm border outline-none" style={{ borderColor: "COLORS.lightGreen", background: "COLORS.cardBg" }} />
                   </div>
                 </div>
               </fieldset>
@@ -127,8 +128,8 @@ export default function Contact() {
                 <legend className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "#B5CAB8" }}>3 · Détails & Réparation</legend>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-xs font-medium mb-1.5" style={{ color: "#6B7C72" }}>Type d'intervention principale</label>
-                    <select name="interventionType" className="w-full text-sm px-4 py-3 rounded-sm border outline-none bg-white" style={{ borderColor: "#D8E8DC", color: "#111C17" }}>
+                    <label className="block text-xs font-medium mb-1.5" style={{ color: "COLORS.textMuted" }}>Type d'intervention principale</label>
+                    <select name="interventionType" className="w-full text-sm px-4 py-3 rounded-sm border outline-none bg-white" style={{ borderColor: "COLORS.lightGreen", color: "COLORS.textDark" }}>
                       <option>Réparation de déchirure / panneau de tissu</option>
                       <option>Remplacement de suspentes</option>
                       <option>Bord d'attaque / fuite</option>
@@ -137,8 +138,8 @@ export default function Contact() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs font-medium mb-1.5" style={{ color: "#6B7C72" }}>Description détaillée du problème</label>
-                    <textarea required name="description" rows={4} placeholder="Veuillez décrire le problème rencontré, l'origine de l'impact, ou les suspentes endommagées..." className="w-full text-sm px-4 py-3 rounded-sm border outline-none resize-none" style={{ borderColor: "#D8E8DC", background: "#fff" }} />
+                    <label className="block text-xs font-medium mb-1.5" style={{ color: "COLORS.textMuted" }}>Description détaillée du problème</label>
+                    <textarea required name="description" rows={4} placeholder="Veuillez décrire le problème rencontré, l'origine de l'impact, ou les suspentes endommagées..." className="w-full text-sm px-4 py-3 rounded-sm border outline-none resize-none" style={{ borderColor: "COLORS.lightGreen", background: "COLORS.cardBg" }} />
                   </div>
                 </div>
               </fieldset>
@@ -150,15 +151,15 @@ export default function Contact() {
                     { id: "expedition", label: "Expédition par colis", desc: "J'envoie mon aile par transporteur (Colissimo, Chronopost) après validation du devis." },
                     { id: "depot", label: "Dépôt direct à l'atelier", desc: "Je souhaite amener ma voile directement à Goncelin (Isère) sur rendez-vous." },
                   ].map((opt) => (
-                    <button key={opt.id} type="button" onClick={() => setLogistics(opt.id as "expedition" | "depot")} className="p-5 rounded-sm border text-left transition-all" style={{ borderColor: logistics === opt.id ? FOREST : "#D8E8DC", background: logistics === opt.id ? "#EBF3ED" : "#fff" }}>
-                      <p className="text-sm font-semibold mb-1" style={{ color: "#111C17" }}>{opt.label}</p>
-                      <p className="text-xs leading-relaxed" style={{ color: "#6B7C72" }}>{opt.desc}</p>
+                    <button key={opt.id} type="button" onClick={() => setLogistics(opt.id as "expedition" | "depot")} className="p-5 rounded-sm border text-left transition-all" style={{ borderColor: logistics === opt.id ? FOREST : "COLORS.lightGreen", background: logistics === opt.id ? "#EBF3ED" : "COLORS.cardBg" }}>
+                      <p className="text-sm font-semibold mb-1" style={{ color: "COLORS.textDark" }}>{opt.label}</p>
+                      <p className="text-xs leading-relaxed" style={{ color: "COLORS.textMuted" }}>{opt.desc}</p>
                     </button>
                   ))}
                 </div>
               </fieldset>
 
-              <button type="submit" disabled={loading} className="w-full py-4 rounded-sm text-sm font-semibold transition-all disabled:opacity-50" style={{ background: FOREST, color: "#F6F8F5" }}>
+              <button type="submit" disabled={loading} className="w-full py-4 rounded-sm text-sm font-semibold transition-all disabled:opacity-50" style={{ background: FOREST, color: "COLORS.bgLight" }}>
                 {loading ? 'Envoi en cours...' : 'Envoyer la demande de devis →'}
               </button>
             </form>
