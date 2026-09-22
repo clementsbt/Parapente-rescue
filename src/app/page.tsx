@@ -159,11 +159,10 @@ export default function Home() {
             </div>
           </ScrollEffect>
           <ScrollEffect direction="right" delay={0.2}>
-            <div className="grid grid-cols-2 gap-4 h-[400px] md:h-[540px]">
+            <div className="grid grid-rows-3 gap-2 sm:gap-4 h-[300px] sm:h-[400px] md:h-[540px]">
               <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
               <img src={IMG.sewing2} alt="Réparation tissu parapente" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
               <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
-              <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
             </div>
           </ScrollEffect>
         </div>
