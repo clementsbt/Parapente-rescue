@@ -221,21 +221,30 @@ export default function Home() {
           </div>
           
           {/* Mobile: stacked cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8 lg:hidden">
-            {[
-              { n: "01", title: "Décrivez", desc: "Envoyez-nous des photos et les détails des dégâts via le formulaire." },
-              { n: "02", title: "Devis", desc: "Réception d'une estimation chiffrée et du délai d'intervention sous 48h." },
-              { n: "03", title: "Déposez", desc: "Déposez votre matériel à l'atelier ou expédiez-le par transporteur." },
-              { n: "04", title: "Récupérez", desc: "Votre aile est prête à voler. Retrait sur place ou renvoi sécurisé." },
-            ].map((s, i) => (
-              <ScrollEffect key={s.n} delay={i * 0.1}>
-                <div className="relative p-3 md:p-6 rounded-sm border transition-all hover:shadow-lg hover:-translate-y-2 h-full flex flex-col justify-between" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
-                  <span className="text-5xl md:text-7xl font-bold tabular-nums leading-none absolute top-1 md:top-2 right-2 md:right-4 opacity-10" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>{s.n}</span>
-                  <h3 className="text-base md:text-lg font-bold mb-1 md:mb-2 relative z-10" style={{ color: "#111C17" }}>{s.title}</h3>
-                  <p className="text-xs md:text-sm leading-tight md:leading-relaxed relative z-10" style={{ color: "#6B7C72" }}>{s.desc}</p>
-                </div>
-              </ScrollEffect>
-            ))}
+          <div className="lg:hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8 mb-6">
+              {[
+                { n: "01", title: "Décrivez", desc: "Envoyez-nous des photos et les détails des dégâts via le formulaire." },
+                { n: "02", title: "Devis", desc: "Réception d'une estimation chiffrée et du délai d'intervention sous 48h." },
+                { n: "03", title: "Déposez", desc: "Déposez votre matériel à l'atelier ou expédiez-le par transporteur." },
+                { n: "04", title: "Récupérez", desc: "Votre aile est prête à voler. Retrait sur place ou renvoi sécurisé." },
+              ].map((s, i) => (
+                <ScrollEffect key={s.n} delay={i * 0.1}>
+                  <div className="relative p-3 md:p-6 rounded-sm border transition-all hover:shadow-lg hover:-translate-y-2 h-full flex flex-col justify-between" style={{ borderColor: "#D8E8DC", background: "#fff" }}>
+                    <span className="text-5xl md:text-7xl font-bold tabular-nums leading-none absolute top-1 md:top-2 right-2 md:right-4 opacity-10" style={{ fontFamily: "var(--font-bricolage), sans-serif" }}>{s.n}</span>
+                    <h3 className="text-base md:text-lg font-bold mb-1 md:mb-2 relative z-10" style={{ color: "#111C17" }}>{s.title}</h3>
+                    <p className="text-xs md:text-sm leading-tight md:leading-relaxed relative z-10" style={{ color: "#6B7C72" }}>{s.desc}</p>
+                  </div>
+                </ScrollEffect>
+              ))}
+            </div>
+            <div className="relative h-[250px] sm:h-[300px] md:h-[350px] rounded-sm overflow-hidden" style={{ background: "#D8E8DC" }}>
+              <img 
+                src="/images/Falcon.jpg.webp" 
+                alt="FalconLW réparée" 
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
 
           {/* Desktop: cards left, image right */}
