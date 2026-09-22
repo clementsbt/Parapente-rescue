@@ -171,11 +171,12 @@ export default function Home() {
         {/* Desktop: images left (2x2 grid), text right */}
         <div className="hidden lg:grid grid-cols-2 gap-6">
           <ScrollEffect direction="left">
-            <div className="grid grid-cols-2 gap-4" style={{ height: "100vh" }}>
+            <div className="grid grid-rows-2 gap-4" style={{ height: "100vh" }}>
               <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
-              <img src={IMG.sewing2} alt="Réparation tissu parapente" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
-              <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
-              <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+              <div className="grid grid-cols-2 gap-4 h-full">
+                <img src={IMG.sewing3} alt="Couture de précision voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+                <img src={IMG.sewing1} alt="Technicien travaillant sur une voile" className="w-full h-full object-cover rounded-sm transition-transform duration-500 hover:scale-105" style={{ background: "#D8E8DC" }} />
+              </div>
             </div>
           </ScrollEffect>
           <ScrollEffect direction="right">
